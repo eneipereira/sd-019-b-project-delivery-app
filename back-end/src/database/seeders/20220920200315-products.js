@@ -29,6 +29,12 @@ module.exports = {
 
      {
       name: 'Skol 269ml',
+      price: 2.19,
+      url_image: 'http://localhost:3001/images/skol_269ml.jpg',
+     },
+
+     {
+      name: 'Skol Beats Senses 313ml',
       price: 4.49,
       url_image: 'http://localhost:3001/images/skol_beats_senses_313ml.jpg',
      },

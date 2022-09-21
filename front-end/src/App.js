@@ -1,16 +1,16 @@
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
 
-function App() {
-  return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/login" component={ Login } />
+        <Redirect from="/" to="/login" />
+      </Switch>
+    );
+  }
 }
 
 export default App;

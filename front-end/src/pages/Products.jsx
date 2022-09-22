@@ -17,7 +17,7 @@ function Produtos() {
       <div>
         <Link to="/checkout">
           <button
-            className="products-cart-btn"
+            className="customer_products__checkout-bottom-value"
             type="button"
           >
             Ver carrinho:

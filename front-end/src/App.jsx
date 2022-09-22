@@ -13,12 +13,11 @@ class App extends Component {
       <Switch>
         <LoginProvider>
           <Route exact path="/login" component={ login } />
+          <Redirect from="/" to="/login" />
+          <Route exact path="/customer/products" component={ Products } />
         </LoginProvider>
-        <ProductsProvider>
-          <Route exact path="/products" component={ Products } />
-        </ProductsProvider>
+        <ProductsProvider />
         {/* <Route exact path="/register" component={ Register } /> */}
-        <Redirect from="/" to="/login" />
       </Switch>
     );
   }

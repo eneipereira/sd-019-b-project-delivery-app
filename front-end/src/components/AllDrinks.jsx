@@ -21,16 +21,20 @@ function AllDrinks() {
     <div className="drink-container">
       {loading ? <p>Loading...</p> : drinks.map((drink, index) => (
         <div key={ drink.id } className="drink-card">
-          <p data-testid={ `${index}-product-price` }>
+          <p data-testid={ `customer_products__element-card-price-${drink.id}` }>
             {'R$ '}
             {drink.price}
           </p>
           <img
             src={ drink.urlImage }
             alt={ drink.name }
-            data-testid={ `${index}-product-img` }
+            data-testid={ `customer_products__img-card-bg-image-${index}` }
           />
-          <p data-testid={ `${index}-product-name` }>{drink.name}</p>
+          <p
+            data-testid={ `customer_products__element-card-title-${index}` }
+          >
+            {drink.name}
+          </p>
           <Counter
             drink={ drink }
           />

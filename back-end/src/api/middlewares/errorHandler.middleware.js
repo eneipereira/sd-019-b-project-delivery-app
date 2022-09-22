@@ -1,3 +1,5 @@
+const { StatusCodes } = require('http-status-codes');
+
 const errors = {
   BadRequestError: 400,
   NotFoundError: 404,
@@ -15,7 +17,7 @@ const errorHandler = (err, _req, res, _next) => {
   const status = errors[err.name];
 
   if (err.name === 'SequelizeUniqueConstraintError') {
-    res.status(500).json({ message: err.errors[0].message });
+    res.status(StatusCodes.BAD_REQUEST).json({ message: err.errors[0].message });
     return;
   }
 

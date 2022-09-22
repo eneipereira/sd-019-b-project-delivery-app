@@ -13,7 +13,7 @@ function AllDrinks() {
       setDrinks(data);
       setLoading(false);
     }
-    console.log(drinks);
+    // console.log(drinks);
     fetchDrinks();
   }, [drinks]);
 
@@ -31,7 +31,9 @@ function AllDrinks() {
             data-testid={ `${index}-product-img` }
           />
           <p data-testid={ `${index}-product-name` }>{drink.name}</p>
-          <Counter />
+          <Counter
+            drink={ drink }
+          />
         </div>
       ))}
     </div>

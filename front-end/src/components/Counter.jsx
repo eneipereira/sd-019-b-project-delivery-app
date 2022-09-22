@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/components/counter.css';
 
-function Counter() {
+function Counter({ drink }) {
   const [counter, setCounter] = React.useState(0);
+  console.log(drink);
 
   const decrement = () => {
     setCounter(counter - 1);
@@ -48,3 +50,6 @@ function Counter() {
 }
 
 export default Counter;
+Counter.propTypes = {
+  drink: PropTypes.node.isRequired,
+};

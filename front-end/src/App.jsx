@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-// import LoginProvider from './context/LoginContext';
+import LoginProvider from './context/LoginContext';
+import login from './pages/login';
 // import Register from './pages/Register';
 import ProductsProvider from './context/ProductsContext';
 import Products from './pages/Products';
@@ -9,14 +10,16 @@ import Products from './pages/Products';
 class App extends Component {
   render() {
     return (
-      <ProductsProvider>
-        <Switch>
-          {/* <Route exact path="/login" component={ Login } /> */}
-          {/* <Redirect from="/" to="/login" /> */}
-          {/* <Route exact path="/register" component={ Register } /> */}
+      <Switch>
+        <LoginProvider>
+          <Route exact path="/login" component={ login } />
+        </LoginProvider>
+        <ProductsProvider>
           <Route exact path="/products" component={ Products } />
-        </Switch>
-      </ProductsProvider>
+        </ProductsProvider>
+        {/* <Route exact path="/register" component={ Register } /> */}
+        <Redirect from="/" to="/login" />
+      </Switch>
     );
   }
 }

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useLoginContext } from '../context/LoginContext';
+import api from '../services';
 
 function Login() {
   const { email, setEmail, password, setPassword } = useLoginContext();
   const [disabled, setDisable] = useState(true);
+  const [error, setError] = useState({});
 
   useEffect(() => {
     const checkEmailAndPassword = () => {
@@ -21,6 +22,16 @@ function Login() {
 
     checkEmailAndPassword();
   }, [email, password]);
+
+  const loginPost = (e) => {
+    e.preventDefault();
+    api.post('/login', { email, password })
+      .then((response) => {
+        const { data } = response;
+        return data;
+      })
+      .catch((err) => setError(err.response.data));
+  };
 
   return (
     <div>
@@ -46,10 +57,10 @@ function Login() {
           />
         </label>
         <button
-          type="button"
+          type="submit"
           data-testid="common_login__button-login"
-          onSubmit={ () => axios.post('/login', { email, password }) }
           disabled={ disabled }
+          onClick={ (e) => loginPost(e) }
         >
           Login
         </button>
@@ -59,6 +70,12 @@ function Login() {
         >
           Ainda não tenho conta
         </button>
+        { error && (
+          <span
+            data-testid="common_login__element-invalid-email"
+          >
+            {error.message}
+          </span>)}
       </form>
     </div>
 

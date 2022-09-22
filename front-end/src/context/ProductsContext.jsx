@@ -10,21 +10,21 @@ const ProductsContext = createContext();
 export const useProductsContext = () => useContext(ProductsContext);
 
 function ProductsProvider({ children }) {
-  const [drink, setDrink] = useState('');
+  const [drinks, setDrinks] = useState('');
   const [priceDrink, setPriceDrink] = useState('');
   const [nameDrink, setNameDrink] = useState('');
   const [counter, setCounter] = useState(0);
 
   const contextValue = useMemo(() => ({
-    drink,
-    setDrink,
+    drinks,
+    setDrinks,
     priceDrink,
     setPriceDrink,
     nameDrink,
     setNameDrink,
     counter,
     setCounter,
-  }), [drink, priceDrink, nameDrink, counter]);
+  }), [drinks, priceDrink, nameDrink, counter]);
 
   return (
     <ProductsContext.Provider value={ contextValue }>

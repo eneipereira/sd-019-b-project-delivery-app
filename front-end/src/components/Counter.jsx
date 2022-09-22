@@ -6,13 +6,16 @@ function Counter() {
 
   const decrement = () => {
     setCounter(counter - 1);
+    localStorage.setItem('counter', counter - 1);
     if (counter <= 0) {
       setCounter(0);
+      localStorage.setItem('counter', 0);
     }
   };
 
   const increment = () => {
     setCounter(counter + 1);
+    localStorage.setItem('counter', counter + 1);
   };
 
   return (
@@ -36,6 +39,7 @@ function Counter() {
         type="button"
         data-testid="customer_products__button-increment-product"
         onClick={ increment }
+        value={ counter }
       >
         +
       </button>

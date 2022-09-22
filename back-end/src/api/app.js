@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const errorHandler = require('./middlewares/errorHandler.middleware');
 const productRoute = require('./routes/Product.route');
 const userRoute = require('./routes/User.route');
-const productsRoute = require('./routes/Products.route');
+const productsRoute = require('./routes/Product.route');
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.static('public'));

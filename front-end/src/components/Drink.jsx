@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Counter from './Counter';
 import '../styles/pages/products.css';
 
-function AllDrinks() {
+function DrinkCard() {
   const [drinks, setDrinks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,4 +38,4 @@ function AllDrinks() {
   );
 }
 
-export default AllDrinks;
+export default DrinkCard;

@@ -52,3 +52,15 @@
     transform: rotate(-10deg);
   }
 }
+
+input:focus {
+  outline: none;
+}
+
+.fail {
+  border-color: red;
+}
+
+.success {
+  border-color: green;
+}

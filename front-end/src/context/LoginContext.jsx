@@ -12,13 +12,16 @@ export const useLoginContext = () => useContext(LoginContext);
 function LoginProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   const contextValue = useMemo(() => ({
     email,
     setEmail,
     password,
     setPassword,
-  }), [email, password]);
+    name,
+    setName,
+  }), [email, password, name]);
 
   return (
     <LoginContext.Provider value={ contextValue }>

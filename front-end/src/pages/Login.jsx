@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
 
@@ -6,6 +7,7 @@ function Login() {
   const { email, setEmail, password, setPassword } = useLoginContext();
   const [disabled, setDisable] = useState(true);
   const [error, setError] = useState({});
+  const history = useHistory();
 
   useEffect(() => {
     const checkEmailAndPassword = () => {
@@ -27,7 +29,9 @@ function Login() {
     e.preventDefault();
     api.post('/login', { email, password })
       .then((response) => {
+        // Data não está sendo retornado nesse caso por conta do history.push
         const { data } = response;
+        history.push('/customer/products');
         return data;
       })
       .catch((err) => setError(err.response.data));
@@ -67,6 +71,7 @@ function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
+          onClick={ () => history.push('/register') }
         >
           Ainda não tenho conta
         </button>

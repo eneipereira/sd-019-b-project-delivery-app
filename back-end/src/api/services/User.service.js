@@ -37,6 +37,17 @@ const userService = {
     return user;
   },
 
+  async getById(id) {
+    const user = await models.User.findOne({
+      where: { id },
+      raw: true,
+    });
+
+    if (!user) throw new NotFoundError('User not found');
+    
+    return user;
+  },
+    
   async getSellers() {
     const sellers = await models.User.findAll({
       where: { role: 'seller' },

@@ -4,7 +4,8 @@ import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
 
 function Login() {
-  const { email, setEmail, password, setPassword } = useLoginContext();
+  const {
+    email, setEmail, password, setPassword, setUserInfo } = useLoginContext();
   const [disabled, setDisable] = useState(true);
   const [error, setError] = useState({});
   const history = useHistory();
@@ -29,10 +30,12 @@ function Login() {
     e.preventDefault();
     api.post('/login', { email, password })
       .then((response) => {
-        // Data não está sendo retornado nesse caso por conta do history.push
         const { data } = response;
+        const result = JSON.stringify(data);
+        localStorage.setItem('user', result);
+        const user = JSON.parse(localStorage.getItem('user'));
+        setUserInfo(user);
         history.push('/customer/products');
-        return data;
       })
       .catch((err) => setError(err.response.data));
   };

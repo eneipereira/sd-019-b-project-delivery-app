@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import AllDrinks from '../components/AllDrinks';
+// import AllDrinks from '../components/AllDrinks';
 import '../styles/pages/products.css';
 
 // const addCart = () => {
@@ -13,7 +13,7 @@ function Produtos() {
   return (
     <div>
       <Header />
-      <AllDrinks />
+      {/* <AllDrinks /> */}
       <div>
         <Link to="/checkout">
           <button

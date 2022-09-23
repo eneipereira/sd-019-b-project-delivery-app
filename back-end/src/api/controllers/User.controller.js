@@ -9,14 +9,21 @@ const userController = {
     const user = await userService.getByEmail(body.email);
     
     await userService.verifyPassword(body.password, user.password);
-
+    
     const { id, password, ...infos } = user;
-
+    
     const token = await authService.makeToken(user);
-
+    
     const data = { ...infos, token };
-
+    
     res.status(StatusCodes.OK).json({ ...data });
+  },
+  
+  /** @type {import('express').RequestHandler} */
+  async getSellers(_req, res) {
+    const sellers = await userService.getSellers();
+
+    res.status(StatusCodes.OK).json(sellers);
   },
 };
 

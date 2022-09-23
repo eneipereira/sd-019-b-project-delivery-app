@@ -44,7 +44,19 @@ const userService = {
     });
 
     if (!user) throw new NotFoundError('User not found');
+    
     return user;
+  },
+    
+  async getSellers() {
+    const sellers = await models.User.findAll({
+      where: { role: 'seller' },
+      raw: true,
+    });
+
+    if (!sellers) throw new NotFoundError('Sellers not found');
+
+    return sellers;
   },
 };
 

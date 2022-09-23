@@ -29,7 +29,9 @@ function Login() {
     e.preventDefault();
     api.post('/login', { email, password })
       .then((response) => {
+        // Data não está sendo retornado nesse caso por conta do history.push
         const { data } = response;
+        history.push('/customer/products');
         return data;
       })
       .catch((err) => setError(err.response.data));

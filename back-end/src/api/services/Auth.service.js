@@ -1,18 +1,20 @@
 require('dotenv/config');
 const jwt = require('jsonwebtoken');
 
-const secret = process.env.JWT_SECRET || 'grupo3omelhor';
+const fs = require('fs');
+const path = 'jwt.evaluation.key';
+const secret = fs.readFileSync(path, { encoding: 'utf8' });
 
 const authService = {
   async makeToken(user) {
-    const { id, name, email } = user;
+    const { role, name, email } = user;
 
     const jwtConfig = {
       algorithm: 'HS256',
       expiresIn: '12h',
     };
 
-    const payload = { data: { id, name, email } };
+    const payload = { role, name, email };
 
     const token = jwt.sign(payload, secret, jwtConfig);
 

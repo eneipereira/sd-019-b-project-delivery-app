@@ -58,7 +58,9 @@ function Register() {
   };
 
   return (
-    <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
+    <div
+      style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }
+    >
       <h1>Cadastro</h1>
       <form action="" method="post" onSubmit={ handleSubmit }>
         <section style={ { padding: '20px', backgroundColor: '#B1C2BE' } }>
@@ -87,7 +89,8 @@ function Register() {
               placeholder="seu-email@site.com.br"
               value={ email }
               onChange={ (e) => {
-                setEmail(e.target.value); handleInputValidationError(e);
+                setEmail(e.target.value);
+                handleInputValidationError(e);
               } }
             />
           </label>
@@ -116,11 +119,7 @@ function Register() {
           </button>
         </section>
       </form>
-      <p
-        data-testid="common_register__element-invalid_register"
-      >
-        {error}
-      </p>
+      <p data-testid="common_register__element-invalid_register">{error}</p>
     </div>
   );
 }

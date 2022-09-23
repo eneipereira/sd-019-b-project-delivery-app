@@ -90,6 +90,7 @@ function Register() {
           <label htmlFor="userPassword">
             <p>Senha</p>
             <input
+              data-testid="common_register__input-password"
               type="password"
               id="userPassword"
               name="password"

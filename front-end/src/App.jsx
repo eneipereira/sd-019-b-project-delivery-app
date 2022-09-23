@@ -13,6 +13,7 @@ class App extends Component {
       <Switch>
         <LoginProvider>
           <Route exact path="/login" component={ Login } />
+          <Route exact path="/" component={ Login } />
           {/* <Redirect from="/" to="/login" /> */}
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/register" component={ Register } />

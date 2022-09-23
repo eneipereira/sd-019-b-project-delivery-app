@@ -1,5 +1,7 @@
 const errors = {
   BadRequestError: 400,
+  ValidationError: 400,
+  JsonWebTokenError: 401,
   NotFoundError: 404,
 };
 

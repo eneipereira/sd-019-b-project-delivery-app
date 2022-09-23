@@ -62,7 +62,6 @@ module.exports = {
 
       saleDate: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
         field: 'sale_date',
         allowNull: false,
       },

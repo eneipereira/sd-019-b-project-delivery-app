@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
 
@@ -6,6 +7,7 @@ function Login() {
   const { email, setEmail, password, setPassword } = useLoginContext();
   const [disabled, setDisable] = useState(true);
   const [error, setError] = useState({});
+  const history = useHistory();
 
   useEffect(() => {
     const checkEmailAndPassword = () => {
@@ -67,6 +69,7 @@ function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
+          onClick={ () => history.push('/register') }
         >
           Ainda não tenho conta
         </button>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import LoginProvider from './context/LoginContext';
-import login from './pages/login';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import ProductsProvider from './context/ProductsContext';
 import Products from './pages/Products';
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Switch>
         <LoginProvider>
-          <Route exact path="/login" component={ login } />
+          <Route exact path="/login" component={ Login } />
           {/* <Redirect from="/" to="/login" /> */}
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/register" component={ Register } />

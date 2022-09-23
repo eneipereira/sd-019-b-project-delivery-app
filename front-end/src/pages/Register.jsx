@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import { createUser } from '../services';
 
@@ -10,6 +11,7 @@ function Register() {
   const { name, email, password, setName, setEmail, setPassword } = useLoginContext();
   const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     const handleDisableButton = () => {
@@ -49,8 +51,10 @@ function Register() {
     const result = await createUser(userData);
     if (result?.data?.message) {
       setError(result.data.message);
+      return;
     }
     localStorage.setItem('token', JSON.stringify(result.token));
+    history.push('/customer/products');
   };
 
   return (

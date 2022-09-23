@@ -1,0 +1,46 @@
+.products-cart-btn {
+  background: green;
+  border: none;
+  border-radius: 15px;
+  bottom: 10%;
+  color: white;
+  font-size: 100%;
+  height: 10%;
+  left: 85%;
+  position: fixed;
+  transition: left 0.5s linear;
+  width: 15%;
+}
+
+.drink-container {
+  align-items: center;
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.drink-card {
+  align-items: center;
+  border: 1px solid rgb(142, 131, 131);
+  flex-wrap: wrap;
+  margin: 10px;
+  max-height: 55em;
+  padding: 10px;
+  width: 25%;
+}
+
+.drink-card img {
+  align-items: center;
+  height: 20em;
+  max-width: 90%;
+}
+
+.drink-card p {
+  align-items: center;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}

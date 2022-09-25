@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 
 export default function Header() {
-  const { userInfo, setUserInfo } = useLoginContext();
+  const { userInfo, setUserInfo, handleLogout } = useLoginContext();
 
   useEffect(() => {
     const userData = () => {
@@ -18,13 +18,13 @@ export default function Header() {
       <div className="header-buttons">
         <nav>
           <Link
-            to="/products"
+            to="/customer/products"
             data-testid="customer_products__element-navbar-link-products"
           >
             Produtos
           </Link>
           <Link
-            to="/orders"
+            to="/customer/orders"
             data-testid="customer_products__element-navbar-link-orders"
           >
             Meus pedidos
@@ -38,7 +38,7 @@ export default function Header() {
         <Link
           to="/login"
           data-testid="customer_products__element-navbar-link-logout"
-          onClick={ () => localStorage.clear() }
+          onClick={ () => handleLogout() }
         >
           Sair
         </Link>

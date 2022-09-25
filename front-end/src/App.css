@@ -64,3 +64,13 @@ input:focus {
 .success {
   border-color: green;
 }
+
+.buttonCart {
+  background-color: green;
+  color: black;
+  font-weight: 900;
+}
+
+.buttonCart:disabled {
+  opacity: 0.3;
+}

@@ -10,8 +10,7 @@ function DrinkList() {
       {loading ? <p>Loading...</p> : drinks.map((drink) => (
         <div key={ drink.id } className="drink-card">
           <p data-testid={ `customer_products__element-card-price-${drink.id}` }>
-            {'R$ '}
-            {drink.price}
+            {drink.price.toString().replace('.', ',')}
           </p>
           <img
             src={ drink.urlImage }

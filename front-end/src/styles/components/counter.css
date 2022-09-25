@@ -13,6 +13,10 @@
   color: white;
 }
 
+button:disabled {
+  opacity: 0.5;
+}
+
 .counter-number {
   color: grey;
   padding: 5px;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import { createUser } from '../services';
+import { setLocalStorage } from '../utils';
 
 const MIN_LENGTH_PASSWORD = 6;
 const MIN_LENGTH_NAME = 12;
@@ -47,13 +48,14 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { name, email, password, role: 'customer' };
-    const result = await createUser(userData);
+    const createUserData = { name, email, password, role: 'customer' };
+    const result = await createUser(createUserData);
     if (result?.data?.message) {
       setError(result.data.message);
       return;
     }
-    localStorage.setItem('token', JSON.stringify(result.token));
+    const userData = { name, email, role: 'customer', token: result.token };
+    setLocalStorage('user', userData);
     history.push('/customer/products');
   };
 

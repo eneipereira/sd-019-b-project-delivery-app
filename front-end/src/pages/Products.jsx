@@ -1,30 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-// import AllDrinks from '../components/AllDrinks';
+import DrinkList from '../components/DrinkList';
+import { useProductsContext } from '../context/ProductsContext';
 import '../styles/pages/products.css';
 
-// const addCart = () => {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//   const drink = {
-//     id:
-
 function Produtos() {
+  const { total, sumTotal } = useProductsContext();
+
+  useEffect(() => sumTotal, [sumTotal]);
+
   return (
     <div>
-      <Header />
-      {/* <AllDrinks /> */}
+      <DrinkList />
       <div>
-        <Link to="/checkout">
+        <Link to="/customer/checkout">
           <button
-            className="customer_products__checkout-bottom-value"
+            disabled={ total === '0,00' }
+            className="buttonCart"
+            data-testid="customer_products__button-cart"
             type="button"
           >
-            Ver carrinho:
-            {' '}
-            R$
-            {' '}
-            {0}
+            <p data-testid="customer_products__checkout-bottom-value">
+              {total}
+            </p>
           </button>
         </Link>
       </div>

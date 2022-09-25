@@ -1,32 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/counter.css';
+import { useProductsContext } from '../context/ProductsContext';
+import { setLocalStorage } from '../utils';
 
 function Counter({ drink }) {
-  const [counter, setCounter] = React.useState(0);
-  console.log(drink);
+  const { drinks, sumTotal } = useProductsContext();
+  const [quantity, setQuantity] = useState(drink.quantity);
+
+  useEffect(() => sumTotal, [sumTotal, quantity]);
+
+  const setNewLocalStorage = (newQuantity) => {
+    const indexItem = drinks.findIndex((item) => item.id === drink.id);
+    // Seta novas chaves para melhorar a manipulação dos dados em outros componentes e páginas
+    drink.quantity = newQuantity;
+    drink.subTotal = +drink.quantity * +drink.price;
+    drinks[indexItem] = drink;
+    // Filtra os itens que possuem quantidade maior que 0 e seta no localStorage
+    const newCartStorage = drinks.filter((item) => item.quantity > 0);
+    setLocalStorage('cart', newCartStorage);
+  };
 
   const decrement = () => {
-    setCounter(counter - 1);
-    localStorage.setItem('counter', counter - 1);
-    if (counter <= 0) {
-      setCounter(0);
-      localStorage.setItem('counter', 0);
-    }
+    setQuantity((prevState) => {
+      setNewLocalStorage(prevState - 1);
+      return prevState - 1;
+    });
   };
 
   const increment = () => {
-    setCounter(counter + 1);
-    localStorage.setItem('counter', counter + 1);
+    setQuantity((prevState) => {
+      setNewLocalStorage(prevState + 1);
+      return prevState + 1;
+    });
   };
+
+  // TODO: Componentizar e estilizar o botão de incremento, decremento e o input
 
   return (
     <div className="counter-container">
       <button
         className="counter-button"
         type="button"
-        data-testid="customer_products__button-decrement-product"
+        data-testid={ `customer_products__button-card-rm-item-${drink.id}` }
         onClick={ decrement }
+        disabled={ quantity < 1 }
       >
         -
       </button>
@@ -34,14 +52,25 @@ function Counter({ drink }) {
         className="counter-number"
         data-testid="counter-value"
       >
-        {counter}
+        <label htmlFor="quantity">
+          <input
+            data-testid={ `customer_products__input-card-quantity-${drink.id}` }
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={ quantity }
+            onChange={ (e) => {
+              setQuantity(+e.target.value); setNewLocalStorage(+e.target.value);
+            } }
+          />
+        </label>
       </p>
       <button
         className="counter-button"
         type="button"
-        data-testid="customer_products__button-increment-product"
+        data-testid={ `customer_products__button-card-add-item-${drink.id}` }
         onClick={ increment }
-        value={ counter }
+        value={ quantity }
       >
         +
       </button>
@@ -51,5 +80,10 @@ function Counter({ drink }) {
 
 export default Counter;
 Counter.propTypes = {
-  drink: PropTypes.node.isRequired,
+  drink: PropTypes.shape({
+    id: PropTypes.number,
+    price: PropTypes.string,
+    quantity: PropTypes.number,
+    subTotal: PropTypes.number,
+  }).isRequired,
 };

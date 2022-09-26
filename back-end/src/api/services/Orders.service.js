@@ -13,6 +13,24 @@ const ordersServices = {
     });
     return orders;
   },
+
+  async getAllById(id) {
+    const orders = await models.Sale.findAll({ 
+      where: { id },
+    });
+    return orders;
+  },
+
+  async getOneOrder(id) {
+    const product = await models.Sale.findAll({
+      where: { id },
+      include: [{
+        model: models.Product,
+        as: 'products',
+        through: { attributes: ['quantity'], as: 'prodQty' } }],
+    });
+    return product;
+  },
 };
 
 module.exports = ordersServices;

@@ -7,4 +7,7 @@ const ordersRouter = Router();
 ordersRouter.route('/')
   .post(rescue(ordersController.getCustumerOrders));
 
+  ordersRouter.route('/:id')
+  .get(rescue(ordersController.getOneOrder));
+
 module.exports = ordersRouter;

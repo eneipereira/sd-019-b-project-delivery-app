@@ -10,4 +10,7 @@ ordersRouter.route('/user/:id')
 ordersRouter.route('/seller/:id')
   .get(rescue(ordersController.getBySellerId));
 
+  ordersRouter.route('/:id')
+  .get(rescue(ordersController.getOneOrder));
+
 module.exports = ordersRouter;

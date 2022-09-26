@@ -10,7 +10,7 @@ const userController = {
     
     await userService.verifyPassword(body.password, user.password);
     
-    const { id, password, ...infos } = user;
+    const { password, ...infos } = user;
     
     const token = await authService.makeToken(user);
     

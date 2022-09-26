@@ -1,6 +1,5 @@
 'use strict';
 
-const moment = require('moment/moment');
 const { DataTypes } = require('sequelize');
 
 const attributes = {
@@ -32,7 +31,7 @@ const attributes = {
   },
   saleDate: {
     type: DataTypes.DATE,
-    defaultValue: moment().format('L'),
+    defaultValue: new Date(),
     allowNull: false,
   },
   status: {

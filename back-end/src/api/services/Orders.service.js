@@ -13,6 +13,19 @@ const ordersServices = {
     });
     return orders;
   },
+
+  async getOneOrder(id) {
+    if (!id) {
+      throw new BadRequestError('Id not found');
+    }
+    const orders = await models.SalesProduct.findOne({ 
+      where: { saleId: id },
+    });
+    if (!orders) {
+      throw new BadRequestError('Product not found');
+    }
+    return orders;
+  },
 };
 
 module.exports = ordersServices;

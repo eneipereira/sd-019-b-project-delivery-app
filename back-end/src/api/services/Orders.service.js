@@ -14,17 +14,22 @@ const ordersServices = {
     return orders;
   },
 
-  async getOneOrder(id) {
-    if (!id) {
-      throw new BadRequestError('Id not found');
-    }
-    const orders = await models.SalesProduct.findOne({ 
-      where: { saleId: id },
+  async getAllById(id) {
+    const orders = await models.Sale.findAll({ 
+      where: { id },
     });
-    if (!orders) {
-      throw new BadRequestError('Product not found');
-    }
     return orders;
+  },
+
+  async getOneOrder(id) {
+    const product = await models.Sale.findAll({
+      where: { id },
+      include: [{
+        model: models.Product,
+        as: 'products',
+        through: { attributes: ['quantity'], as: 'prodQty' } }],
+    });
+    return product;
   },
 };
 

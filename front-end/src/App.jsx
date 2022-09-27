@@ -18,12 +18,11 @@ function App() {
       <ProductsProvider>
         <LoginProvider>
           {match.isExact && <Redirect to="/login" />}
-          <Route exact path="/" component={ Login } />
           <Route exact path="/login" component={ Login } />
           <Route path="/customer/" component={ Header } />
+          <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/orders" component={ Orders } />
           <Route exact path="/customer/orders/:id" component={ OrdersDetails } />
-          <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/checkout" component={ Checkout } />
           <Route exact path="/register" component={ Register } />
         </LoginProvider>

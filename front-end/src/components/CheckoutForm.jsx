@@ -36,7 +36,7 @@ function CheckoutForm({ checkouCart, total }) {
   };
 
   return (
-    <form onSubmit={ handleSubmit }>
+    <form action="" method="post" onSubmit={ handleSubmit }>
       <div style={ { display: 'flex', justifyContent: 'space-around' } }>
         <Select
           dataTestId="customer_checkout__select-seller"

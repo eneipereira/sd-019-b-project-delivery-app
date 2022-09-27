@@ -10,6 +10,8 @@ import Checkout from './pages/Checkout';
 import Header from './components/Header';
 import Sales from './pages/Sales';
 import SalesDetails from './pages/SaleDetails';
+import Orders from './pages/Orders';
+import OrdersDetails from './pages/OrdersDetails';
 
 function App() {
   const match = useRouteMatch('/');
@@ -21,6 +23,8 @@ function App() {
           <Route exact path="/" component={ Login } />
           <Route exact path="/login" component={ Login } />
           <Route path="/customer/" component={ Header } />
+          <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/customer/orders/:id" component={ OrdersDetails } />
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/checkout" component={ Checkout } />
           <Route exact path="/register" component={ Register } />

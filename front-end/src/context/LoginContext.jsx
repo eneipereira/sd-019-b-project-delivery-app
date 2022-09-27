@@ -17,6 +17,7 @@ function LoginProvider({ children }) {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [userInfo, setUserInfo] = useState({});
+  const [userOrders, setUserOrders] = useState([]);
 
   // Faz o reset do localStorage e dos estados do login ao clicar no botão de logout
   const handleLogout = useCallback(() => {
@@ -37,7 +38,9 @@ function LoginProvider({ children }) {
     userInfo,
     setUserInfo,
     handleLogout,
-  }), [email, password, name, userInfo, handleLogout]);
+    userOrders,
+    setUserOrders,
+  }), [email, password, name, userInfo, handleLogout, userOrders]);
 
   return (
     <LoginContext.Provider value={ contextValue }>

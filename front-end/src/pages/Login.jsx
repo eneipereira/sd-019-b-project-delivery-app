@@ -26,6 +26,17 @@ function Login() {
     checkEmailAndPassword();
   }, [email, password]);
 
+  useEffect(() => {
+    const checkLogin = () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        history.push('/customer/products');
+      }
+    };
+
+    checkLogin();
+  }, [history]);
+
   const loginPost = (e) => {
     e.preventDefault();
     api.post('/login', { email, password })

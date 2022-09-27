@@ -20,7 +20,6 @@ const saleService = {
       status: Joi.string().required(),
       products: Joi.array().required().min(1).items(
         Joi.object({
-          saleId: Joi.number().required().positive().integer(),
           productId: Joi.number().required().positive().integer(),
           quantity: Joi.number().required().integer().positive()
           .min(1),

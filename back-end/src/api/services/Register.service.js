@@ -1,39 +1,34 @@
 const Joi = require('joi');
 const md5 = require('md5');
 const models = require('../../database/models');
-const BadRequestError = require('../errors/BadRequestError');
+const runSchema = require('./runSchema');
+const userService = require('./User.service');
 
 const registerService = {
-  validateRegisterObj(obj) {
-    const schema = Joi.object({
-      name: Joi.string().min(12).max(50).required(),
-      password: Joi.string().min(6).required(),
+  validateBodyRegister(obj) {
+    const result = runSchema(Joi.object({
+      name: Joi.string().min(12).max(100).required(),
+      password: Joi.string().min(6).max(32).required(),
       email: Joi.string().email().required(),
       role: Joi.string().required(),
-    });
+    }))(obj);
 
-    const result = schema.validate(obj);
-    if (result.error) {
-      throw new BadRequestError(result.error.message);
-    }
+    return result;
   },
 
   async register(obj) {
-    this.validateRegisterObj(obj);
-    await models.User.create({
-      name: obj.name,
-      password: md5(obj.password),
-      email: obj.email,
-      role: obj.role,
-    });
+    const { name, password, email, role } = obj;
 
-    const user = await models.User.findOne({
-      where: { email: obj.email },
-      raw: true,
-      attributes: { exclude: ['password'] },
-    });
+    await userService.exists(email, name);
 
-    return user;
+    const newUser = (await models.User.create({
+      name,
+      password: md5(password),
+      email,
+      role,
+    })).toJSON();
+
+    return newUser;
   },
 };
 

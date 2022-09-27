@@ -62,8 +62,12 @@ function CheckoutForm({ checkouCart, total }) {
           handleChange={ (e) => setDeliveryNumber(e.target.value) }
         />
       </div>
-      <button type="submit" disabled={ !checkouCart.length }>
-        <p data-testid="customer_checkout__button-submit-order">FINALIZAR PEDIDO</p>
+      <button
+        data-testid="customer_checkout__button-submit-order"
+        type="submit"
+        disabled={ !checkouCart.length }
+      >
+        FINALIZAR PEDIDO
       </button>
     </form>
   );

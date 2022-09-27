@@ -2,35 +2,30 @@ import React, {
   createContext, useContext, useState, useMemo, useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-// import { getLocalStorageParsed } from '../utils';
-// import { useLoginContext } from './LoginContext';
-
-// Cria a context e exporta o uso dela atraves do useContext();
-// Para utilizar basta importar 'useLoginContext' e desestruturar da forma tradicional;
-// Ex: import { useLoginContext } from '../context/LoginProvider';
-// const { email, setEmail } = useLoginContext();
 
 const SalesContext = createContext();
 export const useSalesContext = () => useContext(SalesContext);
 
 function SalesProvider({ children }) {
   const [sales, setSales] = useState([]);
-  const idUser = JSON.parse(localStorage.getItem('user')).id;
-  // const { userInfo } = useLoginContext();
+  const idUser = JSON.parse(localStorage.getItem('user'));
+  console.log(idUser);
 
   useEffect(() => {
     async function fetchSales() {
-      const response = await fetch(`http://localhost:3001/orders/seller/${idUser}`);
+      const response = await fetch(`http://localhost:3001/orders/seller/${idUser.id}`);
       const data = await response.json();
+      console.log(data);
       setSales(data);
     }
     fetchSales();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const contextValue = useMemo(() => ({
     sales,
     setSales,
-  }), [sales, setSales]);
+  }), [sales]);
 
   return (
     <SalesContext.Provider value={ contextValue }>

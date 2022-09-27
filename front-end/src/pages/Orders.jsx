@@ -8,7 +8,7 @@ function Orders() {
 
   useEffect(() => {
     const ordersById = () => {
-      api.post('/orders', { id: userInfo.id })
+      api.get(`/orders/user/${userInfo.id}`)
         .then((response) => {
           const { data } = response;
           console.log(data);
@@ -39,10 +39,10 @@ function Orders() {
               {status}
             </h2>
             <h2 data-testid={ `customer_orders__element-order-date-${id}` }>
-              {saleDate}
+              {new Date(saleDate).toLocaleDateString('pt-br')}
             </h2>
             <h2 data-testid={ `customer_orders__element-card-price-${id}` }>
-              {totalPrice}
+              {totalPrice.replace('.', ',')}
             </h2>
           </div>
         </Link>

@@ -14,7 +14,7 @@ export const serializeCreateSale = (sale, products) => {
     totalPrice: Number(sale.total.replace(',', '.')),
     deliveryAddress: sale.deliveryAddress,
     deliveryNumber: sale.deliveryNumber,
-    status: sale.status || 'pendente',
+    status: sale.status || 'Pendente',
     products: products.map((item) => (
       { productId: Number(item.id), quantity: Number(item.quantity) }
     )),

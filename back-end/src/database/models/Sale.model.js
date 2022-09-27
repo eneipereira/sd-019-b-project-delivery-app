@@ -1,6 +1,6 @@
 'use strict';
 
-const { DataTypes } = require('sequelize');
+const { DataTypes, Sequelize } = require('sequelize');
 
 const attributes = {
   id: {
@@ -31,7 +31,7 @@ const attributes = {
   },
   saleDate: {
     type: DataTypes.DATE,
-    defaultValue: new Date(),
+    defaultValue: Sequelize.fn('NOW'),
     allowNull: false,
   },
   status: {

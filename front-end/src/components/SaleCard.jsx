@@ -1,10 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/salecard.css';
-
-const id = 1;
+import { useLoginContext } from '../context/LoginContext';
 
 function SaleCard() {
+  const id = 1;
+  const { userInfo } = useLoginContext();
+  // const [sales, setSales] = React.useState([]);
+  console.log(userInfo);
+
+  // useEffect(() => {
+  //   async function fetchDrinks() {
+  //     const response = await fetch(`http://localhost:3001/orders/seller/${id}`);
+  //     const data = await response.json();
+  //     setDrinks(data);
+  //     setLoading(false);
+  //   }
+  //   console.log(drinks);
+  //   fetchDrinks();
+  // }, [userInfo]);
+
   return (
     <div className="salecard-container">
       <nav>

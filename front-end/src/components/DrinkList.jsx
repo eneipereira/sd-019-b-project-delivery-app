@@ -21,7 +21,7 @@ function DrinkList() {
   }, [drinks, loading]);
   return (
     <div className="drink-container">
-      {loading ? <p>Loading...</p> : drinkList.map((drink) => (
+      {loading || !drinkList.length ? <p>Loading...</p> : drinkList.map((drink) => (
         <div key={ drink.id } className="drink-card">
           <p data-testid={ `customer_products__element-card-price-${drink.id}` }>
             {drink.price.toString().replace('.', ',')}

@@ -11,7 +11,6 @@ function Orders() {
       api.get(`/orders/user/${userInfo.id}`)
         .then((response) => {
           const { data } = response;
-          console.log(data);
           setUserOrders(data);
         })
         .catch((err) => err.response.data);

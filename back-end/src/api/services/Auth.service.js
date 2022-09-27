@@ -1,4 +1,3 @@
-require('dotenv/config');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
@@ -22,7 +21,7 @@ const authService = {
   },
 
   async readToken(token) {
-    const { data } = jwt.verify(token, secret, (err, decoded) => {
+    const data = jwt.verify(token, secret, (err, decoded) => {
         if (!token) {
           throw new jwt.JsonWebTokenError('Token not found');
         }

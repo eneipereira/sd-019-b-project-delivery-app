@@ -4,7 +4,13 @@ const ordersController = require('../controllers/Orders.controller');
 
 const ordersRouter = Router();
 
-ordersRouter.route('/')
-  .post(rescue(ordersController.getCustumerOrders));
+ordersRouter.route('/user/:id')
+  .get(rescue(ordersController.getByUserId));
+
+ordersRouter.route('/seller/:id')
+  .get(rescue(ordersController.getBySellerId));
+
+  ordersRouter.route('/:id')
+  .get(rescue(ordersController.getOneOrder));
 
 module.exports = ordersRouter;

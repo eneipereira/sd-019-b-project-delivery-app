@@ -9,7 +9,7 @@ function SaleCard() {
     <div className="salecard-container">
       <nav>
         <Link
-          to="/seller/orders"
+          to={ `/seller/orders/${id}` }
         >
           <div className="sale-number">
             <h1 data-testid={ `seller_orders__element-order-id-${id}` }>

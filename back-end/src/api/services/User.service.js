@@ -4,6 +4,7 @@ const models = require('../../database/models');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const runSchema = require('./runSchema');
+const ConflictError = require('../errors/ConflictError');
 
 const userService = {
   async validateBodyLogin(body) {
@@ -57,6 +58,19 @@ const userService = {
     if (!sellers) throw new NotFoundError('Sellers not found');
 
     return sellers;
+  },
+  
+  async exists(email, name) {
+    const exists = await models.User.findOne({
+      where: { email },
+      raw: true,
+    });
+
+    if (exists) {
+      if (exists.name === name) throw new ConflictError('Name already in use!');
+  
+      if (exists.email === email) throw new ConflictError('Email already in use!');
+    }
   },
 };
 

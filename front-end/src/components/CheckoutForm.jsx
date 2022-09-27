@@ -39,7 +39,7 @@ function CheckoutForm({ checkouCart, total }) {
     <form onSubmit={ handleSubmit }>
       <div style={ { display: 'flex', justifyContent: 'space-around' } }>
         <Select
-          dataTestId='"customer_checkout__select-seller"'
+          dataTestId="customer_checkout__select-seller"
           options={ sellers }
           name="sellers"
           selectTitle="P. Vendedora Reponsável:"

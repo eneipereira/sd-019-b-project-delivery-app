@@ -1,26 +1,10 @@
 .salecard-container {
-
-  /* align-items: center; */
-  border: 1px solid red;
+  border: #2fc18c 3px solid;
+  border-radius: 5px;
   display: flex;
-  flex-wrap: wrap;
-
-  /* justify-content: center; */
-  margin-left: 15%;
+  flex-direction: row;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-top: 5%;
-  width: 70%;
-}
-
-.salecard-box {
-  border: 1px solid rgb(23, 13, 137);
-  flex-wrap: wrap;
-  margin: 10px;
-  max-height: 55em;
-  padding: 10px;
-  width: 25%;
-}
-
-.salecard-box a {
-  color: black;
-  text-decoration: none;
+  width: 30%;
 }

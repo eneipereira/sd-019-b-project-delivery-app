@@ -1,49 +1,57 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/components/salecard.css';
-import { useSalesContext } from '../context/SalesContext';
+import { useLoginContext } from '../context/LoginContext';
 
 function SaleCard() {
-  const { sales } = useSalesContext();
-  console.log(typeof sales);
   const id = 1;
+  const { userInfo } = useLoginContext();
+  // const [sales, setSales] = React.useState([]);
+  console.log(userInfo);
+
+  // useEffect(() => {
+  //   async function fetchDrinks() {
+  //     const response = await fetch(`http://localhost:3001/orders/seller/${id}`);
+  //     const data = await response.json();
+  //     setDrinks(data);
+  //     setLoading(false);
+  //   }
+  //   console.log(drinks);
+  //   fetchDrinks();
+  // }, [userInfo]);
 
   return (
     <div className="salecard-container">
-      { sales.map((sale, index) => (
-        <div key={ index } className="salecard-box">
-          <nav>
-            <a href={ `http://localhost:3001/orders//seller/${sale.id}` }>
-              <div className="sale-number">
-                <h1 data-testid={ `seller_orders__element-order-id-${id}` }>
-                  Pedido
-                  {sale.id}
-                </h1>
-              </div>
-              <div className="sale-status">
-                <h1
-                  data-testid={ `seller_orders__element-delivery-status-${id}` }
-                >
-                  {sale.status}
-                </h1>
-              </div>
-              <div className="order-details">
-                <p data-testid={ `seller_orders__element-order-date-${id}` }>
-                  {new Date(sale.saleDate).toLocaleDateString('pt-BR')}
-                </p>
-                <p data-testid={ `seller_orders__element-card-price-${id}` }>
-                  {sale.totalPrice}
-                </p>
-              </div>
-              <p data-testid={ `seller_orders__element-card-address-${id}` }>
-                {sale.deliveryAddress}
-                {', '}
-                {sale.deliveryNumber}
-              </p>
-            </a>
-          </nav>
-        </div>
-      ))}
+      <nav>
+        <Link
+          to={ `/seller/orders/${id}` }
+        >
+          <div className="sale-number">
+            <h1 data-testid={ `seller_orders__element-order-id-${id}` }>
+              Pedido 0001
+            </h1>
+          </div>
+          <div className="sale-status">
+            <h1
+              data-testid={ `seller_orders__element-delivery-status-${id}` }
+            >
+              Pendente
+              {/* carregar estado do pedidos (status) */}
+            </h1>
+          </div>
+          <div className="order-details">
+            <p data-testid={ `seller_orders__element-order-date-${id}` }>
+              Data do Pedido
+            </p>
+            <p data-testid={ `seller_orders__element-card-price-${id}` }>
+              Valor do Pedido
+            </p>
+          </div>
+          <p data-testid={ `seller_orders__element-card-address-${id}` }>
+            Endereço do cliente
+          </p>
+        </Link>
+      </nav>
     </div>
   );
 }

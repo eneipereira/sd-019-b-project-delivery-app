@@ -34,7 +34,14 @@ function Login() {
         const result = JSON.stringify(data);
         localStorage.setItem('user', result);
         const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
         setUserInfo(user);
+        if (user.role === 'seller') {
+          return history.push('/seller/orders');
+        }
+        if (user.role === 'administrator') {
+          return history.push('/admin/manager');
+        }
         history.push('/customer/products');
       })
       .catch((err) => setError(err.response.data));

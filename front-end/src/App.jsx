@@ -8,6 +8,8 @@ import ProductsProvider from './context/ProductsContext';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
 import Header from './components/Header';
+import Sales from './pages/Sales';
+import SalesDetails from './pages/SaleDetails';
 import Orders from './pages/Orders';
 import OrdersDetails from './pages/OrdersDetails';
 
@@ -26,6 +28,8 @@ function App() {
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/customer/checkout" component={ Checkout } />
           <Route exact path="/register" component={ Register } />
+          <Route exact path="/seller/orders" component={ Sales } />
+          <Route exact path="/seller/orders/:id" component={ SalesDetails } />
         </LoginProvider>
       </ProductsProvider>
     </Switch>

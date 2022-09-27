@@ -19,7 +19,8 @@ const ordersController = {
   },
 
   async getOneOrder(req, res) {
-    const orders = await ordersServices.getOneOrder(req.params.id);
+    const { id } = await ordersServices.validateParamsId(req.params);
+    const orders = await ordersServices.getOneOrder(id);
     return res.status(StatusCodes.OK).json(orders);
   },
 };

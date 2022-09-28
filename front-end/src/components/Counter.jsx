@@ -4,20 +4,20 @@ import '../styles/components/counter.css';
 import { useProductsContext } from '../context/ProductsContext';
 import { setLocalStorage } from '../utils';
 
-function Counter({ drink }) {
-  const { drinks, sumTotal } = useProductsContext();
+function Counter({ drink, userCart }) {
+  const { sumTotal } = useProductsContext();
   const [quantity, setQuantity] = useState(drink.quantity);
 
   useEffect(() => sumTotal, [sumTotal, quantity]);
 
   const setNewLocalStorage = (newQuantity) => {
-    const indexItem = drinks.findIndex((item) => item.id === drink.id);
+    const indexItem = userCart.findIndex((item) => item.id === drink.id);
     // Seta novas chaves para melhorar a manipulação dos dados em outros componentes e páginas
     drink.quantity = newQuantity;
     drink.subTotal = +drink.quantity * +drink.price;
-    drinks[indexItem] = drink;
+    userCart[indexItem] = drink;
     // Filtra os itens que possuem quantidade maior que 0 e seta no localStorage
-    const newCartStorage = drinks.filter((item) => item.quantity > 0);
+    const newCartStorage = userCart.filter((item) => item.quantity > 0);
     setLocalStorage('cart', newCartStorage);
   };
 
@@ -86,4 +86,10 @@ Counter.propTypes = {
     quantity: PropTypes.number,
     subTotal: PropTypes.number,
   }).isRequired,
+  userCart: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    price: PropTypes.string,
+    quantity: PropTypes.number,
+    subTotal: PropTypes.number,
+  })).isRequired,
 };

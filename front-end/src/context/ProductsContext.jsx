@@ -35,7 +35,7 @@ function ProductsProvider({ children }) {
     setTotal(totalItems.toFixed(2).replace('.', ','));
   }, []);
 
-  useEffect(() => sumTotal(), [drinks, sumTotal]);
+  useEffect(() => sumTotal(), [drinks, sumTotal, total]);
 
   const contextValue = useMemo(() => ({
     drinks,

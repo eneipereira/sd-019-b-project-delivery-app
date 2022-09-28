@@ -5,7 +5,7 @@ import { getLocalStorageParsed } from '../utils';
 import Counter from './Counter';
 
 function DrinkList() {
-  const [drinkList, setDrinkList] = useState([]);
+  const [userCart, setUserCart] = useState([]);
   const { drinks, loading } = useProductsContext();
   useEffect(() => {
     const cartStorage = getLocalStorageParsed('cart', []);
@@ -17,11 +17,11 @@ function DrinkList() {
       }
       return cartStorage[cartStorageIndex];
     });
-    setDrinkList(drinksStorage);
+    setUserCart(drinksStorage);
   }, [drinks, loading]);
   return (
     <div className="drink-container">
-      {loading || !drinkList.length ? <p>Loading...</p> : drinkList.map((drink) => (
+      {loading || !userCart.length ? <p>Loading...</p> : userCart.map((drink) => (
         <div key={ drink.id } className="drink-card">
           <p data-testid={ `customer_products__element-card-price-${drink.id}` }>
             {drink.price.toString().replace('.', ',')}
@@ -38,6 +38,7 @@ function DrinkList() {
           </p>
           <Counter
             drink={ drink }
+            userCart={ userCart }
           />
         </div>
       ))}

@@ -18,6 +18,13 @@ const userController = {
     
     res.status(StatusCodes.OK).json({ ...data });
   },
+
+  /** @type {import('express').RequestHandler} */
+  async getAll(_req, res) {
+    const users = await userService.getAll();
+
+    res.status(StatusCodes.OK).json(users);
+  },
   
   /** @type {import('express').RequestHandler} */
   async getSellers(_req, res) {
@@ -29,10 +36,21 @@ const userController = {
   /** @type {import('express').RequestHandler} */
   async getSellerById(req, res) {
     const { id } = await userService.validateParamsId(req.params);
-
+    
     const seller = await userService.getById(id);
-
+    
     res.status(StatusCodes.OK).json(seller);
+  },
+  
+  /** @type {import('express').RequestHandler} */
+  async delete(req, res) {
+    const { id } = await userService.validateParamsId(req.params);
+
+    await userService.getById(id);
+
+    await userService.delete(id);
+
+    res.sendStatus(StatusCodes.NO_CONTENT);
   },
 };
 

@@ -35,6 +35,12 @@ const userService = {
     if (md5Pass !== hashedPassword) throw new BadRequestError('Incorrect password');
   },
 
+  async getAll() {
+    const users = await models.User.findAll();
+
+    return users;
+  },
+
   async getByEmail(email) {
     const user = await models.User.findOne({
       where: { email },
@@ -79,6 +85,12 @@ const userService = {
   
       if (exists.email === email) throw new ConflictError('Email already in use!');
     }
+  },
+
+  async delete(id) {
+    const number = await models.User.destroy({ where: { id } });
+
+    return number;
   },
 };
 

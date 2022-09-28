@@ -16,7 +16,7 @@ function Produtos() {
         <Link to="/customer/checkout">
           <button
             disabled={ total === '0,00' }
-            className="buttonCart"
+            className="products-cart-btn"
             data-testid="customer_products__button-cart"
             type="button"
           >

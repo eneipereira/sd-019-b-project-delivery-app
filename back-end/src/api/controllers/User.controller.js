@@ -22,8 +22,17 @@ const userController = {
   /** @type {import('express').RequestHandler} */
   async getSellers(_req, res) {
     const sellers = await userService.getSellers();
-
+    
     res.status(StatusCodes.OK).json(sellers);
+  },
+  
+  /** @type {import('express').RequestHandler} */
+  async getSellerById(req, res) {
+    const { id } = await userService.validateParamsId(req.params);
+
+    const seller = await userService.getById(id);
+
+    res.status(StatusCodes.OK).json(seller);
   },
 };
 

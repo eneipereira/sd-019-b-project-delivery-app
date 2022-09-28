@@ -21,6 +21,14 @@ const userService = {
     return result;
   },
 
+  async validateParamsId(params) {
+    const result = runSchema(Joi.object({
+    id: Joi.number().required().integer().positive(),
+    }))(params);
+
+    return result;
+  },
+
   async verifyPassword(password, hashedPassword) {
     const md5Pass = md5(password);
 

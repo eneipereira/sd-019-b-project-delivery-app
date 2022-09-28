@@ -10,4 +10,7 @@ userRoute.route('/')
 userRoute.route('/sellers')
   .get(rescue(userController.getSellers));
 
+userRoute.route('/sellers/:id')
+  .get(rescue(userController.getSellerById));
+
 module.exports = userRoute;

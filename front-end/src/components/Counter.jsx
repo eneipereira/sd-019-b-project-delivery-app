@@ -4,8 +4,8 @@ import '../styles/components/counter.css';
 import { useProductsContext } from '../context/ProductsContext';
 import { setLocalStorage } from '../utils';
 
-function Counter({ drink }) {
-  const { drinks, sumTotal } = useProductsContext();
+function Counter({ drink, drinks }) {
+  const { sumTotal } = useProductsContext();
   const [quantity, setQuantity] = useState(drink.quantity);
 
   useEffect(() => sumTotal, [sumTotal, quantity]);
@@ -86,4 +86,10 @@ Counter.propTypes = {
     quantity: PropTypes.number,
     subTotal: PropTypes.number,
   }).isRequired,
+  drinks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    price: PropTypes.string,
+    quantity: PropTypes.number,
+    subTotal: PropTypes.number,
+  })).isRequired,
 };

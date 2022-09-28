@@ -6,10 +6,12 @@ import Input from './Input';
 import { useLoginContext } from '../context/LoginContext';
 import api, { createSale } from '../services';
 import { serializeCreateSale } from '../utils';
+import { useProductsContext } from '../context/ProductsContext';
 
 function CheckoutForm({ checkouCart, total }) {
   const history = useHistory();
   const { userInfo } = useLoginContext();
+  const { sumTotal } = useProductsContext();
 
   const [sellerId, setSellerId] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
@@ -31,6 +33,8 @@ function CheckoutForm({ checkouCart, total }) {
     const newSale = serializeCreateSale(sale, checkouCart);
     const { id: createdSaleId } = await createSale(newSale, token);
     if (createdSaleId) {
+      localStorage.removeItem('cart');
+      sumTotal();
       history.push(`/customer/orders/${createdSaleId}`);
     }
   };

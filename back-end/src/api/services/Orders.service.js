@@ -13,6 +13,14 @@ const ordersServices = {
     return result;
   },
 
+  async validateBodyUpdate(body) {
+    const result = runSchema(Joi.object({
+      status: Joi.string().required().min(8),
+    }))(body);
+
+    return result;
+  },
+
   async getByUserId(id) {
     if (!id) {
       throw new BadRequestError('Id not found');
@@ -59,6 +67,17 @@ const ordersServices = {
         through: { attributes: ['quantity'], as: 'prodQty' } }],
     });
     return product;
+  },
+
+  async updateStatus(id, newStatus) {
+    await models.Sale.update(newStatus, { where: { id } });
+
+    const updated = await models.Sale.findOne({
+      where: { id },
+      raw: true,
+    });
+
+    return updated;
   },
 };
 

@@ -16,7 +16,6 @@ function SaleCard() {
   //     setDrinks(data);
   //     setLoading(false);
   //   }
-  //   console.log(drinks);
   //   fetchDrinks();
   // }, [userInfo]);
 

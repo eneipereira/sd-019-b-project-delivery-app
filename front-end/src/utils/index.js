@@ -21,3 +21,13 @@ export const serializeCreateSale = (sale, products) => {
   };
   return newSale;
 };
+
+export const serializeDate = (date) => {
+  const newDate = new Date(date).toLocaleDateString('pt-BR');
+  return newDate;
+};
+
+export const serializePrice = (price) => {
+  const newPrice = price.replace('.', ',');
+  return newPrice;
+};

@@ -19,7 +19,7 @@ export default function Header() {
       <div className="header-buttons">
         <nav>
           <Link
-            to="/customer/orders"
+            to="/seller/orders"
             data-testid="customer_products__element-navbar-link-orders"
           >
             Pedidos

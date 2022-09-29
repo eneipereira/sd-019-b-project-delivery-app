@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { serializePrice } from '../utils';
 
 function Table({ headers, bodies, removeItem }) {
   const dataTestId = 'customer_checkout__element-order-table';
@@ -25,10 +26,10 @@ function Table({ headers, bodies, removeItem }) {
               {item.quantity}
             </td>
             <td data-testid={ `${dataTestId}-unit-price-${index}` }>
-              {item.price.replace('.', ',')}
+              {serializePrice(item.price)}
             </td>
             <td data-testid={ `${dataTestId}-sub-total-${index}` }>
-              {item.subTotal.toFixed(2).replace('.', ',')}
+              {serializePrice(item.subTotal.toFixed(2))}
             </td>
             <td>
               <button

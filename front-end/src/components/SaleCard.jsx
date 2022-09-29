@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/salecard.css';
 import { useLoginContext } from '../context/LoginContext';
-import { useProductsContext } from '../context/ProductsContext';
 
 function SaleCard() {
   const { userInfo } = useLoginContext();
-  const { loading } = useProductsContext();
   const [sales, setSales] = React.useState([]);
   console.log(userInfo);
 
@@ -17,11 +15,11 @@ function SaleCard() {
       setSales(data);
     };
     fetchSales();
-  }, [loading]);
+  }, [userInfo]);
 
   return (
     <div>
-      {loading || !sales.length ? <p>Loading...</p> : sales.map((sale) => (
+      {!sales.length ? <p>Loading...</p> : sales.map((sale) => (
         <div key={ sale.id } className="salecard-card">
           <nav>
             <Link

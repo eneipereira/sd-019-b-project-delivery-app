@@ -12,6 +12,7 @@ import Sales from './pages/Sales';
 import SalesDetails from './pages/SaleDetails';
 import Orders from './pages/Orders';
 import OrdersDetails from './pages/OrdersDetails';
+import Admin from './pages/Admin';
 
 function App() {
   const match = useRouteMatch('/');
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/seller/orders" component={ Sales } />
           <Route exact path="/seller/orders/:id" component={ SalesDetails } />
+          <Route exact path="/admin/manager" component={ Admin } />
         </LoginProvider>
       </ProductsProvider>
     </Switch>

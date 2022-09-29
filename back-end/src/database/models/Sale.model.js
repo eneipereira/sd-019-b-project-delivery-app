@@ -31,7 +31,7 @@ const attributes = {
   },
   saleDate: {
     type: DataTypes.DATE,
-    defaultValue: new Date(),
+    defaultValue: Sequelize.fn('NOW'),
     allowNull: false,
   },
   status: {

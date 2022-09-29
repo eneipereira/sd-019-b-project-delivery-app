@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/seller/orders" component={ Sales } />
           <Route exact path="/seller/orders/:id" component={ SalesDetails } />
-          <Route exact path="/admin/manager" component={ Admin } />
+          <Route exact path="/admin/manage" component={ Admin } />
         </LoginProvider>
       </ProductsProvider>
     </Switch>

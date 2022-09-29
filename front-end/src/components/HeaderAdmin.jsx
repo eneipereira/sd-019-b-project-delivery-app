@@ -19,7 +19,7 @@ export default function Header() {
       <div className="header-buttons">
         <nav>
           <Link
-            to="/"
+            to="/admin/manage"
             data-testid="customer_products__element-navbar-link-orders"
           >
             Gerenciar usuários

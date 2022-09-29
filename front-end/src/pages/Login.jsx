@@ -52,7 +52,7 @@ function Login() {
           return history.push('/seller/orders');
         }
         if (user.role === 'administrator') {
-          return history.push('/admin/manager');
+          return history.push('/admin/manage');
         }
         history.push('/customer/products');
       })

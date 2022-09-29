@@ -26,7 +26,7 @@ const registerService = {
       password: md5(password),
       email,
       role,
-    })).toJSON();
+    }));
 
     return newUser;
   },

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useLoginContext } from '../context/LoginContext';
+// import { useHistory } from 'react-router-dom';
 import { createUser } from '../services';
 
 const MIN_LENGTH_PASSWORD = 6;
@@ -8,16 +7,27 @@ const MIN_LENGTH_NAME = 12;
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 function AdmNewUser() {
-  const { name, email, password, setName, setEmail, setPassword } = useLoginContext();
+  const [newUser, setNewUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: 'customer',
+  });
   const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const history = useHistory();
+  // const history = useHistory();
+  const [roleSelect, setRoleSelect] = useState('customer');
+  const typeRole = [
+    { type: 'customer' },
+    { type: 'administrator' },
+    { type: 'seller' },
+  ];
 
   useEffect(() => {
     const handleDisableButton = () => {
-      const isPasswordLengthValid = password.length >= MIN_LENGTH_PASSWORD;
-      const isNameLengthValid = name.length >= MIN_LENGTH_NAME;
-      const isEmailValid = emailRegex.test(email);
+      const isPasswordLengthValid = newUser.password.length >= MIN_LENGTH_PASSWORD;
+      const isNameLengthValid = newUser.name.length >= MIN_LENGTH_NAME;
+      const isEmailValid = emailRegex.test(newUser.email);
       if (isPasswordLengthValid && isEmailValid && isNameLengthValid) {
         setDisabled(false);
         return;
@@ -25,7 +35,7 @@ function AdmNewUser() {
       setDisabled(true);
     };
     handleDisableButton();
-  }, [email, name, password]);
+  }, [newUser]);
 
   const handleInputValidationError = ({ target }, minLength) => {
     const { value, name: eventName } = target;
@@ -47,12 +57,18 @@ function AdmNewUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const createUserData = { name, email, password, role: 'customer' };
+    const createUserData = {
+      name: newUser.name,
+      email: newUser.email,
+      password: newUser.password,
+      role: roleSelect,
+    };
     const result = await createUser(createUserData);
     if (result?.data?.message) {
       setError(result.data.message);
     }
-    history.push('/admin/manage');
+    // history.push('/admin/manage');
+    window.location.reload();
   };
 
   return (
@@ -68,9 +84,9 @@ function AdmNewUser() {
               id="userName"
               name="name"
               placeholder="Nome usuário"
-              value={ name }
+              value={ newUser.name }
               onChange={ (e) => {
-                setName(e.target.value);
+                setNewUser({ ...newUser, name: e.target.value });
                 handleInputValidationError(e, MIN_LENGTH_NAME);
               } }
               data-testid="admin_manage__input-name"
@@ -83,9 +99,9 @@ function AdmNewUser() {
               id="userEmail"
               name="email"
               placeholder="email@site.com.br"
-              value={ email }
+              value={ newUser.email }
               onChange={ (e) => {
-                setEmail(e.target.value);
+                setNewUser({ ...newUser, email: e.target.value });
                 handleInputValidationError(e);
               } }
               data-testid="admin_manage__input-email"
@@ -98,9 +114,9 @@ function AdmNewUser() {
               id="userPassword"
               name="password"
               placeholder="**********"
-              value={ password }
+              value={ newUser.password }
               onChange={ (e) => {
-                setPassword(e.target.value);
+                setNewUser({ ...newUser, password: e.target.value });
                 handleInputValidationError(e, MIN_LENGTH_PASSWORD);
               } }
               data-testid="admin_manage__input-password"
@@ -108,12 +124,15 @@ function AdmNewUser() {
           </label>
           Tipo:
           <select
-            name="role"
+            value={ roleSelect }
+            onChange={ (e) => setRoleSelect(e.target.value) }
             data-testid="admin_manage__select-role"
           >
-            <option value="client">Cliente</option>
-            <option value="seller">Vendedor</option>
-            <option value="administrator">Administrador</option>
+            {typeRole.map((item, index) => (
+              <option key={ index } value={ item.type }>
+                {item.type}
+              </option>
+            ))}
           </select>
           <button
             disabled={ disabled }

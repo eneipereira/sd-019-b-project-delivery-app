@@ -19,7 +19,7 @@ function SaleCard() {
 
   return (
     <div>
-      {!sales.length ? <p>Loading...</p> : sales.map((sale) => (
+      {!sales.length ? <p>Você não tem pedidos...</p> : sales.map((sale) => (
         <div key={ sale.id } className="salecard-card">
           <nav>
             <Link
@@ -43,7 +43,7 @@ function SaleCard() {
                   {new Date(sale.saleDate).toLocaleDateString('pt-BR')}
                 </p>
                 <p data-testid={ `seller_orders__element-card-price-${sale.id}` }>
-                  {sale.totalPrice}
+                  {sale.totalPrice.replace('.', ',')}
                 </p>
               </div>
               <p data-testid={ `seller_orders__element-card-address-${sale.id}` }>

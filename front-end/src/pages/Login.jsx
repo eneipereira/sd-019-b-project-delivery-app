@@ -29,11 +29,13 @@ function Login() {
   useEffect(() => {
     const checkLogin = () => {
       const user = JSON.parse(localStorage.getItem('user'));
-      if (user) {
+      if (user?.role === 'customer') {
         history.push('/customer/products');
       }
+      if (user?.role === 'seller') {
+        history.push('/seller/orders');
+      }
     };
-
     checkLogin();
   }, [history]);
 

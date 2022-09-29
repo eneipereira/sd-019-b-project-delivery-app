@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useProductsContext } from '../context/ProductsContext';
 
 function SaleDetailsCard() {
   const saleDataTestId = 'seller_order_details__element-order-details-label';
   const saleTableTestId = 'seller_order_details__element-order-table';
   const { id } = useParams();
-  const { loading } = useProductsContext();
   const [saleState, setSaleState] = useState([]);
   useEffect(() => {
     const fetchSale = async () => {
@@ -19,14 +17,12 @@ function SaleDetailsCard() {
 
   return (
     <div>
-      <h1>Detalhe do pedido</h1>
-      {loading || !saleState.length ? <p>Loading...</p> : saleState.map((sale) => (
-        <div key={ sale.id } className="salecard-card">
+      {!saleState.length ? <p>Loading...</p> : saleState.map((sale) => (
+        <div key={ sale.id }>
           <h1
             data-testid={ `${saleDataTestId}-order-${sale.id}` }
           >
             {sale.id}
-
           </h1>
           <p
             data-testid={ `${saleDataTestId}-order-date` }
@@ -54,36 +50,36 @@ function SaleDetailsCard() {
 
           </button>
           <div>
-            {sale.products.map((item) => (
+            {sale.products.map((item, index) => (
               <div key={ item.id } className="salecard-card">
                 <p
-                  data-testid={ `${saleTableTestId}-item-number-${item.id}` }
+                  data-testid={ `${saleTableTestId}-item-number-${index}` }
                 >
-                  {item.id}
+                  {index + 1}
 
                 </p>
                 <p
-                  data-testid={ `${saleTableTestId}-name-${item.id}` }
+                  data-testid={ `${saleTableTestId}-name-${index}` }
                 >
                   {item.name}
 
                 </p>
                 <p
-                  data-testid={ `${saleTableTestId}-quantity-${item.id}` }
+                  data-testid={ `${saleTableTestId}-quantity-${index}` }
                 >
                   {item.prodQty.quantity}
 
                 </p>
                 <p
-                  data-testid={ `${saleTableTestId}-unit-price-${item.id}` }
+                  data-testid={ `${saleTableTestId}-unit-price-${index}` }
                 >
-                  {item.price}
+                  {item.price.replace('.', ',')}
 
                 </p>
                 <p
-                  data-testid={ `${saleTableTestId}-sub-total-${item.id}` }
+                  data-testid={ `${saleTableTestId}-sub-total-${index}` }
                 >
-                  {item.price * item.prodQty.quantity}
+                  {(item.price * item.prodQty.quantity).toFixed(2).replace('.', ',')}
 
                 </p>
               </div>
@@ -92,7 +88,7 @@ function SaleDetailsCard() {
           <p
             data-testid="seller_order_details__element-order-total-price"
           >
-            {saleState[0].totalPrice}
+            {saleState[0].totalPrice.replace('.', ',')}
 
           </p>
         </div>

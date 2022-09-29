@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
+import { serializeDate, serializePrice } from '../utils';
 
 function OrdersDetails() {
   const { userOrders, setUserOrders } = useLoginContext();
@@ -39,8 +40,7 @@ function OrdersDetails() {
     };
 
     ordersById();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id, setUserOrders]);
 
   return (
     <section>
@@ -61,7 +61,7 @@ function OrdersDetails() {
         >
           { userOrders.length === 0
             ? ''
-            : new Date(userOrders[0].saleDate).toLocaleDateString('pt-br')}
+            : serializeDate(userOrders[0].saleDate)}
         </h4>
         <h4
           data-testid={ `${testIdStatus}-details-label-delivery-status` }
@@ -111,12 +111,12 @@ function OrdersDetails() {
                     <td
                       data-testid={ `${testIdsTable}-unit-price-${index + 1}` }
                     >
-                      {price.replace('.', ',')}
+                      {serializePrice(price)}
                     </td>
                     <td
                       data-testid={ `${testIdsTable}-sub-total-${index + 1}` }
                     >
-                      {(prodQty.quantity * price).toFixed(2).replace('.', ',')}
+                      {serializePrice((prodQty.quantity * price).toFixed(2))}
                     </td>
                   </tr>
                 ),
@@ -129,7 +129,7 @@ function OrdersDetails() {
       >
         { userOrders.length === 0
           ? ''
-          : `${userOrders[0].totalPrice.replace('.', ',')}` }
+          : `${serializePrice(userOrders[0].totalPrice)}` }
       </div>
     </section>
   );

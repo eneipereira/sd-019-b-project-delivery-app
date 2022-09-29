@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/salecard.css';
-import { useLoginContext } from '../context/LoginContext';
+import { getLocalStorageParsed, serializeDate, serializePrice } from '../utils';
 
 function SaleCard() {
-  const { userInfo } = useLoginContext();
+  const { id: userInfo } = getLocalStorageParsed('user', {});
   const [sales, setSales] = React.useState([]);
-  console.log(userInfo);
 
   useEffect(() => {
     const fetchSales = async () => {
-      console.log(userInfo);
-      const data = await fetch(`http://localhost:3001/orders/seller/${+userInfo.id}`).then((response) => response.json());
+      const data = await fetch(`http://localhost:3001/orders/seller/${+userInfo}`).then((response) => response.json());
       setSales(data);
     };
     fetchSales();
@@ -40,10 +38,10 @@ function SaleCard() {
               </div>
               <div className="order-details">
                 <p data-testid={ `seller_orders__element-order-date-${sale.id}` }>
-                  {new Date(sale.saleDate).toLocaleDateString('pt-BR')}
+                  {serializeDate(sale.saleDate)}
                 </p>
                 <p data-testid={ `seller_orders__element-card-price-${sale.id}` }>
-                  {sale.totalPrice.replace('.', ',')}
+                  {serializePrice(sale.totalPrice)}
                 </p>
               </div>
               <p data-testid={ `seller_orders__element-card-address-${sale.id}` }>

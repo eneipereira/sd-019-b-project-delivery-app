@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
+import { serializeDate, serializePrice } from '../utils';
 
 function Orders() {
   const { userInfo, userOrders, setUserOrders } = useLoginContext();
@@ -38,10 +39,10 @@ function Orders() {
               {status}
             </h2>
             <h2 data-testid={ `customer_orders__element-order-date-${id}` }>
-              {new Date(saleDate).toLocaleDateString('pt-br')}
+              {serializeDate(saleDate)}
             </h2>
             <h2 data-testid={ `customer_orders__element-card-price-${id}` }>
-              {totalPrice.replace('.', ',')}
+              {serializePrice(totalPrice)}
             </h2>
           </div>
         </Link>

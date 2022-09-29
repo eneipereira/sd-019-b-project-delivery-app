@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from './Counter';
 import '../styles/pages/products.css';
+import { serializePrice } from '../utils';
 
 function DrinkCard({ drink, userCart }) {
   return (
     <div className="drink-card">
       <p data-testid={ `customer_products__element-card-price-${drink.id}` }>
-        {drink.price.toString().replace('.', ',')}
+        {serializePrice(drink.price)}
       </p>
       <img
         src={ drink.urlImage }

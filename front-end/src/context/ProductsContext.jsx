@@ -2,7 +2,7 @@ import React, {
   createContext, useContext, useState, useMemo, useCallback, useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import { getLocalStorageParsed } from '../utils';
+import { getLocalStorageParsed, serializePrice } from '../utils';
 
 // Cria a context e exporta o uso dela atraves do useContext();
 // Para utilizar basta importar 'useLoginContext' e desestruturar da forma tradicional;
@@ -32,7 +32,7 @@ function ProductsProvider({ children }) {
   const sumTotal = useCallback(() => {
     const storageCart = getLocalStorageParsed('cart', []);
     const totalItems = storageCart.reduce((acc, { subTotal }) => acc + subTotal, 0);
-    setTotal(totalItems.toFixed(2).replace('.', ','));
+    setTotal(serializePrice(totalItems.toFixed(2)));
   }, []);
 
   useEffect(() => sumTotal(), [drinks, sumTotal, total]);

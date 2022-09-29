@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
 
 function AdmListUsers() {
   const [users, setUsers] = React.useState([]);
+  // const history = useHistory();
 
   useEffect(() => {
     const listUsers = async () => {
@@ -11,6 +13,15 @@ function AdmListUsers() {
     };
     listUsers();
   }, []);
+
+  const handleDelete = async (id) => {
+    await fetch(`http://localhost:3001/login/user/${id}`, {
+      method: 'DELETE',
+    });
+    const response = await fetch('http://localhost:3001/login/users');
+    const data = await response.json();
+    setUsers(data);
+  };
 
   return (
     <div>
@@ -25,14 +36,14 @@ function AdmListUsers() {
             <th>Excluir</th>
           </thead>
           <tbody>
-            {!users.length ? <p>Loading</p> : users.map((user) => (
+            {!users.length ? <p>Loading</p> : users.map((user, index) => (
               <tr key={ user.id }>
                 <td
                   data-testid={
                     `admin_manage__element-user-table-item-number-${user.id}`
                   }
                 >
-                  {user.id}
+                  {index + 1}
                 </td>
                 <td
                   data-testid={
@@ -62,7 +73,13 @@ function AdmListUsers() {
                     `admin_manage__element-user-table-remove-${user.id}`
                   }
                 >
-                  <button type="button">Excluir</button>
+                  <button
+                    type="button"
+                    onClick={ () => handleDelete(user.id) }
+                  >
+                    Excluir
+
+                  </button>
 
                 </td>
               </tr>

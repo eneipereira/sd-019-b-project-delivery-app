@@ -21,6 +21,9 @@ const utils = {
 }
 
 describe('User route test', () => {
+  beforeEach(async () => {
+    sinon.restore();
+  })
   it('/users route test', async () => {
     const response = await chai.request(app).post('/login').send(utils.body);
     expect(response.status).to.equal(200);
@@ -38,7 +41,7 @@ describe('User route test', () => {
   });
 
   it('/users/sellers error route test', async () => {
-    sinon.stub(User, "findAll").resolves(null)
+    sinon.stub(User, "findAll").resolves(null);
     const response = await chai.request(app).get('/login/sellers')
     expect(response.body).to.have.property('message', 'Sellers not found')
     expect(response.status).to.equal(404);

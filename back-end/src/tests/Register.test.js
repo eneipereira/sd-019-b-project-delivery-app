@@ -22,6 +22,19 @@ const utils = {
     "email": "geovane@santos.com",
     "password": "Geovane123",
     "role": "Custumer"
+  },
+
+  existsName: {
+    "name": "Delivery App Admin",
+    "email": "adm@deliveryapp.com",
+    "password": "--adm2@21!!--",
+    "role": "admin"
+  },
+  existsEmail: {
+    "name": "Deliveryisadadn",
+    "email": "adm@deliveryapp.com",
+    "password": "--adm2@21!!--",
+    "role": "admin"
   }
 
 }
@@ -35,5 +48,19 @@ describe('Resgister route test', () => {
     sinon.stub(User, "create").resolves(utils.mock);
     const response = await chai.request(app).post('/register').send(utils.json);
     expect(response.status).to.equal(201);
+  });
+
+  it('/register/ error name route test', async () => {
+    sinon.stub(User, "create").resolves(utils.mock);
+    const response = await chai.request(app).post('/register').send(utils.existsName);
+    expect(response.body).to.have.property('message', 'Name already in use!')
+    expect(response.status).to.equal(409);
+  });
+
+  it('/register/ error email route test', async () => {
+    sinon.stub(User, "create").resolves(utils.mock);
+    const response = await chai.request(app).post('/register').send(utils.existsEmail);
+    expect(response.body).to.have.property('message', 'Email already in use!')
+    expect(response.status).to.equal(409);
   });
 });

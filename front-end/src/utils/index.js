@@ -1,13 +1,13 @@
-export const getLocalStorageParsed = (key, defaultType) => {
+const getLocalStorageParsed = (key, defaultType) => {
   const data = JSON.parse(localStorage.getItem(key)) || defaultType;
   return data;
 };
 
-export const setLocalStorage = (key, value) => {
+const setLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const serializeCreateSale = (sale, products) => {
+const serializeCreateSale = (sale, products) => {
   const newSale = {
     userId: Number(sale.id),
     sellerId: Number(sale.sellerId),
@@ -22,12 +22,20 @@ export const serializeCreateSale = (sale, products) => {
   return newSale;
 };
 
-export const serializeDate = (date) => {
+const serializeDate = (date) => {
   const newDate = new Date(date).toLocaleDateString('pt-BR');
   return newDate;
 };
 
-export const serializePrice = (price) => {
+const serializePrice = (price) => {
   const newPrice = price.replace('.', ',');
   return newPrice;
+};
+
+module.exports = {
+  getLocalStorageParsed,
+  setLocalStorage,
+  serializeCreateSale,
+  serializeDate,
+  serializePrice,
 };

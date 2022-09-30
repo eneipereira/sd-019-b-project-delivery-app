@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
-import { serializeDate, serializePrice } from '../utils';
+
+const { serializeDate, serializePrice } = require('../utils');
 
 function OrdersDetails() {
   const { userOrders, setUserOrders } = useLoginContext();
@@ -12,35 +13,37 @@ function OrdersDetails() {
   const testIdsTable = 'customer_order_details__element-order-table';
   const testIdStatus = 'customer_order_details__element-order';
 
+  const getSellersById = (idSeller) => {
+    api.get(`/login/sellers/${idSeller}`)
+      .then((response) => {
+        const { data } = response;
+        setSellers(data);
+      })
+      .catch((err) => err.response.data);
+  };
+
+  const disableButton = (status) => setDisable(status !== 'Em Trânsito');
+
+  const ordersById = () => {
+    api.get(`/orders/${id}`)
+      .then((response) => {
+        const { data } = response;
+        disableButton(data[0].status);
+        getSellersById(data[0].sellerId);
+        setUserOrders(data);
+      })
+      .catch((err) => err.response.data);
+  };
+
   useEffect(() => {
-    const getSellersById = (idSeller) => {
-      api.get(`/login/sellers/${idSeller}`)
-        .then((response) => {
-          const { data } = response;
-          setSellers(data);
-        })
-        .catch((err) => err.response.data);
-    };
-
-    const disableButton = (status) => {
-      if (status === 'Em trânsito' || status === 'Entregue') {
-        setDisable(false);
-      }
-    };
-
-    const ordersById = () => {
-      api.get(`/orders/${id}`)
-        .then((response) => {
-          const { data } = response;
-          disableButton(data[0].status);
-          getSellersById(data[0].sellerId);
-          setUserOrders(data);
-        })
-        .catch((err) => err.response.data);
-    };
-
     ordersById();
-  }, [id, setUserOrders]);
+  }, []);
+
+  const setOrderStatus = (status) => {
+    api.patch(`/orders/${id}`, { status })
+      .then(ordersById)
+      .catch((err) => err.response.data);
+  };
 
   return (
     <section>
@@ -72,6 +75,7 @@ function OrdersDetails() {
           type="button"
           disabled={ disable }
           data-testid="customer_order_details__button-delivery-check"
+          onClick={ () => setOrderStatus('Entregue') }
         >
           Marcar como entregue
         </button>

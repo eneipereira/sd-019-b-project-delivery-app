@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { serializePrice } from '../utils';
+
+const { serializePrice } = require('../utils');
 
 function Table({ headers, bodies, removeItem }) {
   const dataTestId = 'customer_checkout__element-order-table';

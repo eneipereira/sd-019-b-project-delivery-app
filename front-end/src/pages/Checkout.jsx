@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import CheckoutForm from '../components/CheckoutForm';
 import Table from '../components/Table';
 import { useProductsContext } from '../context/ProductsContext';
-import { setLocalStorage, getLocalStorageParsed } from '../utils';
+
+const { getLocalStorageParsed, setLocalStorage } = require('../utils');
 
 function Checkout() {
   const { total, sumTotal } = useProductsContext();

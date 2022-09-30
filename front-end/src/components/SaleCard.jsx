@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/salecard.css';
-import { getLocalStorageParsed, serializeDate, serializePrice } from '../utils';
+
+const { serializeDate, serializePrice, getLocalStorageParsed } = require('../utils');
 
 function SaleCard() {
   const { id: userInfo } = getLocalStorageParsed('user', {});
@@ -33,7 +34,6 @@ function SaleCard() {
                   data-testid={ `seller_orders__element-delivery-status-${sale.id}` }
                 >
                   {sale.status}
-                  {/* carregar estado do pedidos (status) */}
                 </h1>
               </div>
               <div className="order-details">

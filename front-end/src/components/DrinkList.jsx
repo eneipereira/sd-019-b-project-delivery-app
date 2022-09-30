@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useProductsContext } from '../context/ProductsContext';
 import '../styles/pages/products.css';
-import { getLocalStorageParsed } from '../utils';
 import DrinkCard from './DrinkCard';
+
+const { getLocalStorageParsed } = require('../utils');
 
 function DrinkList() {
   const [userCart, setUserCart] = useState([]);

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../services';
-import { serializeDate, serializePrice } from '../utils';
+
+const { serializeDate, serializePrice } = require('../utils');
 
 function SaleDetailsCard() {
   const testId = 'seller_order_details__';
@@ -10,27 +11,27 @@ function SaleDetailsCard() {
   const [disableBtn1, setDisableBtn1] = useState(true);
   const [disableBtn2, setDisableBtn2] = useState(true);
 
-  useEffect(() => {
-    const disableButton = (status) => {
-      if (status === 'Pendente') {
-        setDisableBtn1(false);
-      } else if (status === 'Preparando') {
-        setDisableBtn2(false);
-      }
-    };
+  const disableButton = (status) => {
+    setDisableBtn1(status !== 'Pendente');
+    setDisableBtn2(status !== 'Preparando');
+  };
 
-    const fetchSale = async () => {
-      const response = await fetch(`http://localhost:3001/orders/${id}`);
-      const data = await response.json();
-      disableButton(data[0].status);
-      setSaleState(data);
-    };
+  const fetchSale = async () => {
+    console.log('passou aqui');
+    const response = await fetch(`http://localhost:3001/orders/${id}`);
+    const data = await response.json();
+    console.log(data[0].status);
+    disableButton(data[0].status);
+    setSaleState(data);
+  };
+
+  useEffect(() => {
     fetchSale();
-  }, [id]);
+  }, []);
 
   const setOrderStatus = (status) => {
     api.patch(`/orders/${id}`, { status })
-      .then()
+      .then(fetchSale)
       .catch((err) => err.response.data);
   };
 
@@ -45,7 +46,7 @@ function SaleDetailsCard() {
             <p data-testid={ `${testId}element-order-details-label-order-date` }>
               {serializeDate(sale.saleDate)}
             </p>
-            <p data-testid={ `${testId}element-order-details-label-delivery-status` }>
+            <p data-testid={ `${testId}element-order-details-label-delivery-status$` }>
               {sale.status}
             </p>
             <button

@@ -68,6 +68,7 @@ function AdmNewUser() {
     const result = await createUserByAdmPage(createUserData, token);
     if (result?.data?.message) {
       setError(result.data.message);
+      return;
     }
     // history.push('/admin/manage');
     window.location.reload();
@@ -144,7 +145,7 @@ function AdmNewUser() {
             Cadastrar
           </button>
         </form>
-        <p data-testid="common_register__element-invalid_register">{error}</p>
+        <p data-testid="admin_manage__element-invalid-register">{error}</p>
       </div>
     </div>
   );

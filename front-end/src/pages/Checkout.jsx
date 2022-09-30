@@ -3,7 +3,7 @@ import CheckoutForm from '../components/CheckoutForm';
 import Table from '../components/Table';
 import { useProductsContext } from '../context/ProductsContext';
 
-const { getLocalStorageParsed } = require('../utils');
+const { getLocalStorageParsed, setLocalStorage } = require('../utils');
 
 function Checkout() {
   const { total, sumTotal } = useProductsContext();

@@ -18,10 +18,12 @@ const registerController = {
     const data = await registerService.validateBodyRegister(req.body);
     const token = req.headers.authorization;
     
-    const {role} = await authService.readToken(token);
+    const { role } = await authService.readToken(token);
 
     if (role !== 'administrator') {
-      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Only admins can register new admins' });
+      return res.status(StatusCodes.UNAUTHORIZED).json(
+        { message: 'Only admins can register new admins' },
+      );
     }
 
     const createUser = await registerService.register(data);

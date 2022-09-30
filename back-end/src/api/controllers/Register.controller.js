@@ -14,6 +14,24 @@ const registerController = {
     res.status(StatusCodes.CREATED).json({ ...createUser, token });
   },
 
+  async admRegister(req, res) {
+    const data = await registerService.validateBodyRegister(req.body);
+    const token = req.headers.authorization;
+    
+    const { role } = await authService.readToken(token);
+
+    if (role !== 'administrator') {
+      return res.status(StatusCodes.UNAUTHORIZED).json(
+        { message: 'Only admins can register new admins' },
+      );
+    }
+
+    const createUser = await registerService.register(data);
+
+    const userToken = await authService.makeToken(createUser);
+
+    res.status(StatusCodes.CREATED).json({ ...createUser, userToken });
+  },
 };
 
 module.exports = registerController;

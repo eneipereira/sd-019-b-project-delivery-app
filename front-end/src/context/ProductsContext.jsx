@@ -2,7 +2,8 @@ import React, {
   createContext, useContext, useState, useMemo, useCallback, useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import { getLocalStorageParsed, serializePrice } from '../utils';
+
+const { getLocalStorageParsed, serializePrice } = require('../utils');
 
 // Cria a context e exporta o uso dela atraves do useContext();
 // Para utilizar basta importar 'useLoginContext' e desestruturar da forma tradicional;

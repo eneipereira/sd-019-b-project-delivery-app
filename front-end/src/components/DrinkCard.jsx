@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Counter from './Counter';
 import '../styles/pages/products.css';
-import { serializePrice } from '../utils';
+
+const { serializePrice } = require('../utils');
 
 function DrinkCard({ drink, userCart }) {
   return (

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/components/counter.css';
 import { useProductsContext } from '../context/ProductsContext';
-import { setLocalStorage } from '../utils';
+
+const { setLocalStorage } = require('../utils');
 
 function Counter({ drink, userCart }) {
   const { sumTotal } = useProductsContext();

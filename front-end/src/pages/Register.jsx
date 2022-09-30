@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import { createUser } from '../services';
-import { setLocalStorage } from '../utils';
+
+const { setLocalStorage } = require('../utils');
 
 const MIN_LENGTH_PASSWORD = 6;
 const MIN_LENGTH_NAME = 12;

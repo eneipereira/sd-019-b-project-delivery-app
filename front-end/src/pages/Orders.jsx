@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
-import { serializeDate, serializePrice } from '../utils';
+
+const { serializeDate, serializePrice } = require('../utils');
 
 function Orders() {
   const { userInfo, userOrders, setUserOrders } = useLoginContext();

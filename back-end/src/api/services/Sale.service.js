@@ -45,10 +45,10 @@ const saleService = {
     const { products, ...saleInfos } = data;
 
     const result = await sequelize.transaction(async (t) => {
-      const newSale = (await models.Sale.create(
+      const newSale = await models.Sale.create(
         { userId: id, ...saleInfos },
         { transaction: t, raw: true },
-      )).toJSON();
+      );
 
       const SaleProducts = products.map((product) => ({
         saleId: newSale.id, productId: product.productId, quantity: product.quantity,

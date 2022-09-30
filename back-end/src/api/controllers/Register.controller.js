@@ -11,7 +11,7 @@ const registerController = {
 
     const token = await authService.makeToken(createUser);
 
-    res.status(StatusCodes.CREATED).json({ ...createUser, token });
+    res.status(StatusCodes.CREATED).json({ ...createUser.dataValues, token });
   },
 
   async admRegister(req, res) {

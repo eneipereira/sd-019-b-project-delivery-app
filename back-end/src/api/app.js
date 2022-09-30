@@ -19,6 +19,10 @@ app.use('/products', productRoute);
 app.use('/register', registerRoute);
 app.use('/sales', saleRoute);
 
+app.get('/error', (_req, _res) => {
+  throw new Error('Errou');
+});
+
 app.get('/coffee', (_req, res) => res.status(418).end());
 
 app.use(errorHandler);

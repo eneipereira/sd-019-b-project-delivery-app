@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 
 function AdmListUsers() {
   const [users, setUsers] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   // const history = useHistory();
 
   useEffect(() => {
@@ -12,15 +13,14 @@ function AdmListUsers() {
       setUsers(data);
     };
     listUsers();
-  }, []);
+  }, [loading]);
 
   const handleDelete = async (id) => {
+    setLoading(true);
     await fetch(`http://localhost:3001/login/user/${id}`, {
       method: 'DELETE',
     });
-    const response = await fetch('http://localhost:3001/login/users');
-    const data = await response.json();
-    setUsers(data);
+    setLoading(false);
   };
 
   return (

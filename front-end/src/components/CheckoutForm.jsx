@@ -22,6 +22,7 @@ function CheckoutForm({ checkouCart, total }) {
     const getSellers = async () => {
       const response = await api.get('/login/sellers').then((res) => res.data);
       setSellers(response);
+      console.log(response);
     };
     getSellers();
   }, []);

@@ -13,6 +13,19 @@ export const createUser = async (payload = {}) => {
   }
 };
 
+export const createUserByAdmPage = async (payload = {}, token) => {
+  try {
+    const { data: sale } = await api.post('/register/admin', { ...payload }, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return sale;
+  } catch ({ response }) {
+    return response;
+  }
+};
+
 export const createSale = async (payload = {}, token) => {
   try {
     const { data: sale } = await api.post('/sales', { ...payload }, {

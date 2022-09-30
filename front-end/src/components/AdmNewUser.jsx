@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
-import { createUser } from '../services';
+import { createUserByAdmPage } from '../services';
+import { getLocalStorageParsed } from '../utils';
 
 const MIN_LENGTH_PASSWORD = 6;
 const MIN_LENGTH_NAME = 12;
@@ -57,13 +58,14 @@ function AdmNewUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { token } = getLocalStorageParsed('user');
     const createUserData = {
       name: newUser.name,
       email: newUser.email,
       password: newUser.password,
       role: roleSelect,
     };
-    const result = await createUser(createUserData);
+    const result = await createUserByAdmPage(createUserData, token);
     if (result?.data?.message) {
       setError(result.data.message);
     }

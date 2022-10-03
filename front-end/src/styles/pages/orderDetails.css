@@ -1,0 +1,79 @@
+.section-details {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.infos-container {
+  align-items: flex-end;
+  background-color: #ddd;
+  border: 1px solid;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.table-orders {
+  border: 1px solid;
+  text-align: center;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.total-price-order {
+  align-self: flex-end;
+  background-color: goldenrod;
+  border-radius: 15px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin-top: 80px;
+  text-align: center;
+  width: 200px;
+}
+
+.total-price-order p {
+  font-family: system-ui , -apple-system;
+  margin-top: 10px;
+}
+
+.delivery-button {
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-family: system-ui , -apple-system;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.Pendente {
+  background-color: #ccb800;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.Preparando {
+  background-color: #6c0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.Entregue {
+  background-color: #00cc9bbf;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.em-transito {
+  background-color: #f68606f3;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+h4 {
+  padding: 10px;
+}

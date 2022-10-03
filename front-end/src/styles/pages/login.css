@@ -6,34 +6,34 @@
 
 .form-main {
   align-items: center;
+  background-color: white;
   border: 1px solid #ccc;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   max-width: 500px;
   padding: 20px;
   width: 100%;
-  background-color: #fff;
-  border-radius: 5px;
 }
 
 .input-register {
-  width: 100%;
-  padding: 12px 20px;
-  display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  display: inline-block;
+  padding: 12px 20px;
+  width: 100%;
 }
 
 .input {
-  width: 45%;
-  padding: 12px 20px;
-  display: inline-block;
   border: 1px solid #ccc;
-  margin-top: 15px;
   border-radius: 4px;
   box-sizing: border-box;
+  display: inline-block;
   font-size: 18px;
+  margin-top: 15px;
+  padding: 12px 20px;
+  width: 45%;
 }
 
 .register-button {

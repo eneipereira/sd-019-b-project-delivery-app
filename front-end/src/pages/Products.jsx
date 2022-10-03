@@ -21,6 +21,8 @@ function Produtos() {
             type="button"
           >
             <p data-testid="customer_products__checkout-bottom-value">
+              Ver carrinho R$
+              {' '}
               {total}
             </p>
           </button>

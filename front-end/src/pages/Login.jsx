@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
+import logo from '../images/logo.png';
+import '../styles/pages/login.css';
 
 function Login() {
   const {
@@ -60,11 +62,16 @@ function Login() {
   };
 
   return (
-    <div>
-      <form method="post">
-        <label htmlFor="email-input">
-          Email
+    <div className="form-container">
+      <video playsinline autoPlay muted loop id="myVideo">
+        <source src="https://player.vimeo.com/external/543175330.sd.mp4?s=daf8fd4627cc89a064e251d02f0952773b119858&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+      </video>
+      <form method="post" className="form-main">
+        <img src={ logo } alt="trybeer" width={ 200 } />
+        <label htmlFor="email-input" className="form-input">
+          <p>Email</p>
           <input
+            className="input-register"
             type="email"
             id="email-input"
             data-testid="common_login__input-email"
@@ -73,8 +80,9 @@ function Login() {
           />
         </label>
         <label htmlFor="password-input">
-          Senha
+          <p>Senha</p>
           <input
+            className="input-register password-button"
             type="password"
             id="password-input"
             data-testid="common_login__input-password"
@@ -83,6 +91,7 @@ function Login() {
           />
         </label>
         <button
+          className="input login-button"
           type="submit"
           data-testid="common_login__button-login"
           disabled={ disabled }
@@ -91,19 +100,21 @@ function Login() {
           Login
         </button>
         <button
+          className="input register-button"
           type="button"
           data-testid="common_login__button-register"
           onClick={ () => history.push('/register') }
         >
           Ainda não tenho conta
         </button>
-        { error && (
-          <span
-            data-testid="common_login__element-invalid-email"
-          >
-            {error.message}
-          </span>)}
+
       </form>
+      { error && (
+        <span
+          data-testid="common_login__element-invalid-email"
+        >
+          {error.message}
+        </span>)}
     </div>
 
   );

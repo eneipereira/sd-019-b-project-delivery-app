@@ -44,16 +44,13 @@ function AdmNewUser() {
     const isEmailValid = emailRegex.test(value);
     if (minLength && isEmailOrPasswordLengthValid) {
       setError(`${eventName} must be at least ${minLength}`);
-      target.className = 'fail';
       return;
     }
     if (eventName === 'email' && !isEmailValid) {
       setError(`${eventName} must be a valid`);
-      target.className = 'fail';
       return;
     }
     setError('');
-    target.className = 'success';
   };
 
   const handleSubmit = async (e) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import { createUser } from '../services';
+import logo from '../images/logo.png';
 
 const { setLocalStorage } = require('../utils');
 
@@ -35,16 +36,13 @@ function Register() {
     const isEmailValid = emailRegex.test(value);
     if (minLength && isEmailOrPasswordLengthValid) {
       setError(`${eventName} must be at least ${minLength}`);
-      target.className = 'fail';
       return;
     }
     if (eventName === 'email' && !isEmailValid) {
       setError(`${eventName} must be a valid`);
-      target.className = 'fail';
       return;
     }
     setError('');
-    target.className = 'success';
   };
 
   const handleSubmit = async (e) => {
@@ -61,15 +59,16 @@ function Register() {
   };
 
   return (
-    <div
-      style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }
-    >
+    <div className="form-container">
+      <img src={ logo } alt="trybeer" width={ 200 } />
       <h1>Cadastro</h1>
-      <form action="" method="post" onSubmit={ handleSubmit }>
-        <section style={ { padding: '20px', backgroundColor: '#B1C2BE' } }>
+
+      <form action="" method="post" onSubmit={ handleSubmit } className="form-main">
+        <section>
           <label htmlFor="userName">
             <p>Nome</p>
             <input
+              className="input-register"
               data-testid="common_register__input-name"
               type="text"
               id="userName"
@@ -85,6 +84,7 @@ function Register() {
           <label htmlFor="userEmail">
             <p>Email</p>
             <input
+              className="input-register"
               data-testid="common_register__input-email"
               type="email"
               id="userEmail"
@@ -100,6 +100,7 @@ function Register() {
           <label htmlFor="userPassword">
             <p>Senha</p>
             <input
+              className="input-register"
               data-testid="common_register__input-password"
               type="password"
               id="userPassword"
@@ -113,8 +114,8 @@ function Register() {
             />
           </label>
           <button
+            className="input login-button"
             data-testid="common_register__button-register"
-            style={ { display: 'block', margin: '20px 0px' } }
             disabled={ disabled }
             type="submit"
           >

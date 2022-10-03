@@ -8,7 +8,11 @@ const { serializePrice } = require('../utils');
 function DrinkCard({ drink, userCart }) {
   return (
     <div className="drink-card">
-      <p data-testid={ `customer_products__element-card-price-${drink.id}` }>
+      <p
+        data-testid={ `customer_products__element-card-price-${drink.id}` }
+      >
+        R$
+        {' '}
         {serializePrice(drink.price)}
       </p>
       <img
@@ -16,15 +20,18 @@ function DrinkCard({ drink, userCart }) {
         alt={ drink.name }
         data-testid={ `customer_products__img-card-bg-image-${drink.id}` }
       />
-      <p
-        data-testid={ `customer_products__element-card-title-${drink.id}` }
-      >
-        {drink.name}
-      </p>
-      <Counter
-        drink={ drink }
-        userCart={ userCart }
-      />
+      <div className="drink-details">
+        <p
+          id="drink-name"
+          data-testid={ `customer_products__element-card-title-${drink.id}` }
+        >
+          {drink.name}
+        </p>
+        <Counter
+          drink={ drink }
+          userCart={ userCart }
+        />
+      </div>
     </div>
   );
 }

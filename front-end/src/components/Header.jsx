@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import '../styles/components/header.css';
+import logo from '../images/logo.png';
 
 export default function Header() {
   const { userInfo, setUserInfo, handleLogout } = useLoginContext();
@@ -32,9 +33,9 @@ export default function Header() {
           </Link>
         </nav>
       </div>
-      <h1 data-testid="customer_products__element-navbar-user-full-name">
+      <h3 data-testid="customer_products__element-navbar-user-full-name">
         { userInfo.name }
-      </h1>
+      </h3>
       <nav>
         <Link
           to="/login"

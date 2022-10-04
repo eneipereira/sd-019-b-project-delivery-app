@@ -41,8 +41,13 @@ function CheckoutForm({ checkouCart, total }) {
   };
 
   return (
-    <form action="" method="post" onSubmit={ handleSubmit }>
-      <div style={ { display: 'flex', justifyContent: 'space-around' } }>
+    <form
+      className="checkout-form-main"
+      action=""
+      method="post"
+      onSubmit={ handleSubmit }
+    >
+      <div className="form-container-checkout">
         <Select
           dataTestId="customer_checkout__select-seller"
           options={ sellers }
@@ -60,7 +65,7 @@ function CheckoutForm({ checkouCart, total }) {
         />
         <Input
           dataTestId="customer_checkout__input-address-number"
-          title="Número::"
+          title="Número:"
           type="number"
           name="numero"
           value={ deliveryNumber }
@@ -68,6 +73,7 @@ function CheckoutForm({ checkouCart, total }) {
         />
       </div>
       <button
+        className="form-checkout-button"
         data-testid="customer_checkout__button-submit-order"
         type="submit"
         disabled={ !checkouCart.length }

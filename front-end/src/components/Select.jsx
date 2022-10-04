@@ -4,9 +4,10 @@ import PropType from 'prop-types';
 export default function Select({
   options, name, selectTitle, handleChange, dataTestId }) {
   return (
-    <div>
+    <div className="select-container">
       <p>{selectTitle}</p>
       <select
+        className="input"
         data-testid={ dataTestId }
         required
         defaultValue=""

@@ -3,36 +3,56 @@ import PropTypes from 'prop-types';
 
 const { serializePrice } = require('../utils');
 
-function Table({ headers, bodies, removeItem }) {
+function Table({ bodies, removeItem }) {
   const dataTestId = 'customer_checkout__element-order-table';
   return (
-    <table width="100%">
-      <thead style={ { width: '100%' } }>
+    <table>
+      <thead>
         <tr>
-          {headers.map((item) => (
-            <th key={ item }>{item}</th>
-          ))}
+          <th>Item</th>
+          <th style={ { width: '40%' } }>Descrição</th>
+          <th>Quantidade</th>
+          <th>Valor unitário</th>
+          <th>Sub-total</th>
+          <th>Remover item</th>
         </tr>
       </thead>
       <tbody align="center">
         {bodies.map((item, index) => (
-          <tr key={ item.id }>
-            <td data-testid={ `${dataTestId}-item-number-${index}` }>
+          <tr key={ item.id } className="cu">
+            <td
+              data-testid={ `${dataTestId}-item-number-${index}` }
+              className="table-body-item"
+            >
               {index + 1}
             </td>
-            <td data-testid={ `${dataTestId}-name-${index}` }>
+            <td
+              className="table-body-name"
+              data-testid={ `${dataTestId}-name-${index}` }
+            >
               {item.name}
             </td>
-            <td data-testid={ `${dataTestId}-quantity-${index}` }>
+            <td
+              className="table-body-quantity"
+              data-testid={ `${dataTestId}-quantity-${index}` }
+            >
               {item.quantity}
             </td>
-            <td data-testid={ `${dataTestId}-unit-price-${index}` }>
+            <td
+              className="table-body-unit-price"
+              data-testid={ `${dataTestId}-unit-price-${index}` }
+            >
               {serializePrice(item.price)}
             </td>
-            <td data-testid={ `${dataTestId}-sub-total-${index}` }>
+            <td
+              className="table-body-sub-total"
+              data-testid={ `${dataTestId}-sub-total-${index}` }
+            >
               {serializePrice(item.subTotal.toFixed(2))}
             </td>
-            <td>
+            <td
+              className="table-body-remove-item"
+            >
               <button
                 type="button"
                 onClick={ () => removeItem(item.id) }
@@ -57,7 +77,6 @@ Table.propTypes = {
     price: PropTypes.string,
     subTotal: PropTypes.number,
   })).isRequired,
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 

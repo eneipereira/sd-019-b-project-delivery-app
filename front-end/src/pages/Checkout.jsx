@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CheckoutForm from '../components/CheckoutForm';
 import Table from '../components/Table';
 import { useProductsContext } from '../context/ProductsContext';
+import '../styles/pages/checkout.css';
 
 const { getLocalStorageParsed, setLocalStorage } = require('../utils');
 
@@ -21,23 +22,25 @@ function Checkout() {
   };
 
   return (
-    <section>
-      <div>
-        <p>Finalizar Pedido</p>
+    <section className="main-container">
+      <h2>Finalizar Pedido</h2>
+      <div className="table-container">
         <Table headers={ headers } bodies={ checkouCart } removeItem={ removeItem } />
-        <div style={ { width: '100%', textAlign: 'end' } }>
+        <div className="table-total">
           <h1>
-            Total R$
+            Total: R$
+            {' '}
             <span data-testid="customer_checkout__element-order-total-price">
               {total}
             </span>
           </h1>
         </div>
       </div>
-
-      <div>
-        <p>Dethalhes e Endereço para Entrega</p>
-        <CheckoutForm checkouCart={ checkouCart } total={ total } />
+      <h2>Dethalhes e Endereço para Entrega</h2>
+      <div className="table-container checkout-main-container">
+        <div className="table-container checkout-form-container">
+          <CheckoutForm checkouCart={ checkouCart } total={ total } />
+        </div>
       </div>
 
     </section>

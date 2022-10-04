@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
-import '../styles/components/header.css';
+import '../styles/components/headerSeller.css';
 import logo from '../images/logo.png';
 
 export default function Header() {

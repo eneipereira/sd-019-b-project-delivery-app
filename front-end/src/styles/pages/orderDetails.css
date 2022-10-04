@@ -8,6 +8,7 @@
   align-items: flex-end;
   background-color: #ddd;
   border: 1px solid;
+  border-radius: 5px;
   display: flex;
   justify-content: space-around;
 }
@@ -15,18 +16,20 @@
 
 .table-orders {
   border: 1px solid;
+  border-radius: 5px;
   text-align: center;
 }
 
 th, td {
   border-bottom: 1px solid #ddd;
+  border-radius: 5px;
   padding: 10px;
 }
 
 .total-price-order {
   align-self: flex-end;
-  background-color: goldenrod;
-  border-radius: 15px;
+  background-color: yellow;
+  border-radius: 5px;
   display: flex;
   height: 40px;
   justify-content: center;
@@ -43,7 +46,7 @@ th, td {
 .delivery-button {
   background-color: black;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
   color: white;
   font-family: system-ui , -apple-system;
   margin-bottom: 20px;

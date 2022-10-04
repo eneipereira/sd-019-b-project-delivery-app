@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../services';
 import '../styles/components/saledetailcard.css';
+import delivery from '../images/delivery.png';
 
 const { serializeDate, serializePrice } = require('../utils');
 
@@ -46,55 +47,86 @@ function SaleDetailsCard() {
               {' '}
               {sale.id}
             </h1>
-            <p data-testid={ `${testId}element-order-details-label-order-date` }>
-              {serializeDate(sale.saleDate)}
-            </p>
-            <p data-testid={ `${testId}element-order-details-label-delivery-status$` }>
-              {sale.status}
-            </p>
-            <button
-              type="button"
-              disabled={ disableBtn1 }
-              data-testid={ `${testId}button-preparing-check` }
-              onClick={ () => setOrderStatus('Preparando') }
-            >
-              Preparar Pedido
-            </button>
-            <button
-              type="button"
-              disabled={ disableBtn2 }
-              data-testid={ `${testId}button-dispatch-check` }
-              onClick={ () => setOrderStatus('Em Trânsito') }
-            >
-              Saiu para Entrega
-            </button>
-            <div>
+            <img id="img" src={ delivery } alt="delivery" />
+            <div className="detailcard-container-info">
+              <p data-testid={ `${testId}element-order-details-label-order-date` }>
+                { `Data do pedido: ${serializeDate(sale.saleDate)}` }
+              </p>
+              <p data-testid={ `${testId}element-order-details-label-delivery-status$` }>
+                {sale.status}
+              </p>
+              <button
+                type="button"
+                disabled={ disableBtn1 }
+                data-testid={ `${testId}button-preparing-check` }
+                onClick={ () => setOrderStatus('Preparando') }
+              >
+                Preparar Pedido
+              </button>
+              <button
+                type="button"
+                disabled={ disableBtn2 }
+                data-testid={ `${testId}button-dispatch-check` }
+                onClick={ () => setOrderStatus('Em Trânsito') }
+              >
+                Saiu para Entrega
+              </button>
+            </div>
+            <div className="drinks-container">
               {sale.products.map((item, index) => (
-                <div key={ item.id } className="salecard-card">
+                <div key={ item.id } className="drinkcard-card">
                   <img
                     src={ item.urlImage }
                     alt={ item.name }
                     data-testid={ `${testId}element-order-details-product-img-${index}` }
                   />
-                  <p data-testid={ `${testId}element-order-table-item-number-${index}` }>
+                  <p
+                    className="drinkcard-card-number"
+                    data-testid={ `${testId}element-order-table-item-number-${index}` }
+                  >
                     {index + 1}
                   </p>
-                  <p data-testid={ `${testId}element-order-table-name-${index}` }>
+                  <p
+                    className="drinkcard-card-name"
+                    data-testid={ `${testId}element-order-table-name-${index}` }
+                  >
                     {item.name}
                   </p>
-                  <p data-testid={ `${testId}element-order-table-quantity-${index}` }>
+                  <p
+                    className="drinkcard-card-qtd"
+                    data-testid={ `${testId}element-order-table-quantity-${index}` }
+                  >
                     {item.prodQty.quantity}
+                    {' '}
+                    unid
                   </p>
-                  <p data-testid={ `${testId}element-order-table-unit-price-${index}` }>
+                  <p
+                    className="drinkcard-card-price"
+                    data-testid={ `${testId}element-order-table-unit-price-${index}` }
+                  >
+                    R$
+                    {' '}
                     {serializePrice(item.price)}
+                    {' '}
+                    unid
                   </p>
-                  <p data-testid={ `${testId}element-order-table-sub-total-${index}` }>
+                  <p
+                    className="drinkcard-card-total"
+                    data-testid={ `${testId}element-order-table-sub-total-${index}` }
+                  >
+                    R$
+                    {' '}
                     {serializePrice((item.price * item.prodQty.quantity).toFixed(2))}
                   </p>
                 </div>
               ))}
             </div>
-            <p data-testid={ `${testId}element-order-total-price` }>
+            <p
+              id="total"
+              data-testid={ `${testId}element-order-total-price` }
+            >
+              Total do pedido R$:
+              {' '}
               {serializePrice(saleState[0].totalPrice)}
             </p>
           </div>

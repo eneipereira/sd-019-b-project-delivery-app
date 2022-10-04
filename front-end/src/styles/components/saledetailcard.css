@@ -1,14 +1,140 @@
+/* stylelint-disable selector-max-specificity */
 .detailcard-container {
   align-items: center;
+  border: 1px solid rgba(175, 175, 175, 0.596);
+  box-shadow: 4px 4px 12px rgba(175, 175, 175, 0.596);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
-  width: 100%;
+  width: 80%;
 }
 
 .detailcard-container h1 {
-  font-size: 2.5rem;
-  margin: 0 auto;
+  font-size: 2em;
+}
+
+#img {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin-left: 65%;
+
+}
+
+.detailcard-container-info {
+  background-color: rgb(232, 232, 227);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0%;
+  width: 100%;
+}
+
+.detailcard-container-info p {
+  color: rgb(85, 80, 80);
+  margin: 15px;
+}
+
+.detailcard-container-info button {
+  background-color: yellow;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 1.2em;
+  margin: 10px;
+}
+
+.detailcard-container-info button:disabled {
+  background-color: rgb(85, 80, 80);
+  color: white;
+}
+
+.drinks-container {
+  display: flex;
+  flex-flow: nowrap;
+  flex-direction: column;
+  width: 100%;
+}
+
+.drinks-container img {
+  height: 50px;
+  width: 50px;
+}
+
+.drinkcard-card {
+  border: 1px solid rgba(175, 175, 175, 0.596);
+  border-radius: 5px;
+  box-shadow: 4px 4px 12px rgba(175, 175, 175, 0.596);
+  display: flex;
+}
+
+
+.drinkcard-card-number {
+  background-color: rgb(244, 245, 245);
+  border-radius: 5px;
+  color: rgb(85, 80, 80);
+  font-size: 1.2em;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 5%;
+}
+
+.drinkcard-card-name {
+  background-color: rgb(244, 245, 245);
+  border-radius: 5px;
+  color: rgb(85, 80, 80);
+  font-size: 1.2em;
+  margin: 10px;
+  padding: 10px;
+  width: 40%;
+}
+
+.drinkcard-card-qtd {
+  background-color: rgb(244, 245, 245);
+  border-radius: 5px;
+  color: rgb(85, 80, 80);
+  font-size: 1em;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 10%;
+}
+
+.drinkcard-card-price {
+  background-color: rgb(244, 245, 245);
+  border-radius: 5px;
+  color: rgb(85, 80, 80);
+  font-size: 1em;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 15%;
+}
+
+.drinkcard-card-total {
+  background-color: rgb(244, 245, 245);
+  border-radius: 5px;
+  color: rgb(85, 80, 80);
+  font-size: 1em;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 15%;
+}
+
+#total {
+  align-items: center;
+  background-color: yellow;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px 12px rgba(175, 175, 175, 0.596);
+  color: black;
+  display: flex;
+  font-size: 1.8em;
+  height: 40px;
+  justify-content: flex-end;
+  padding: 10px;
   width: 100%;
 }

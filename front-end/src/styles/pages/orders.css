@@ -1,13 +1,22 @@
-.salecard-container {
+.orders-container {
+  align-items: center;
   display: flex;
-  flex-flow: wrap;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  margin: 10px;
   width: 100%;
 }
 
-.salecard-card {
+.orders-container img {
+  align-self: center;
+  display: flex;
+  height: 120px;
+  margin-left: 0;
+  margin-right: 50px;
+  width: 120px;
+}
+
+.orders-box {
   border: rgb(85, 80, 80) 3px solid;
   border-radius: 5px;
   display: flex;
@@ -17,13 +26,18 @@
   width: 40%;
 }
 
-.sale-number h1 {
-  color: rgb(25, 26, 25);
+.orders-box-title {
+  border-radius: 5px;
+  color: black;
+  display: flex;
   font-size: 1.5em;
+  justify-content: center;
+  margin: 5px;
   text-align: center;
+  width: 100%;
 }
 
-.sale-status h1 {
+.orders-box-status h2 {
   background-color: yellow;
   border-radius: 5px;
   color: black;
@@ -34,15 +48,6 @@
   width: 100%;
 }
 
-.order-details p {
+.orders-box-details h2 {
   color: rgb(85, 80, 80);
-}
-
-.salecard-container img {
-  align-self: center;
-  display: flex;
-  height: 120px;
-  margin-left: 0;
-  margin-right: 50px;
-  width: 120px;
 }

@@ -8,6 +8,7 @@ function Input({ name, type, title, value, handleChange, dataTestId }) {
         {title}
       </p>
       <input
+        className="input"
         data-testid={ dataTestId }
         required
         name={ name }

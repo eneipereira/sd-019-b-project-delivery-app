@@ -63,7 +63,7 @@ function Login() {
 
   return (
     <div className="form-container">
-      <video playsinline autoPlay muted loop id="myVideo">
+      <video playsInline autoPlay muted loop id="myVideo">
         <source src="https://player.vimeo.com/external/543175330.sd.mp4?s=daf8fd4627cc89a064e251d02f0952773b119858&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
       </video>
       <form method="post" className="form-main">

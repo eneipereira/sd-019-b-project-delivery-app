@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import { createUser } from '../services';
 import logo from '../images/logo.png';
+import '../styles/pages/login.css';
 
 const { setLocalStorage } = require('../utils');
 
@@ -53,17 +54,23 @@ function Register() {
       setError(result.data.message);
       return;
     }
-    const userData = { name, email, role: 'customer', token: result.token, id: result.id };
+    const userData = { name,
+      email,
+      role: 'customer',
+      token: result.token,
+      id: result.id };
     setLocalStorage('user', userData);
     history.push('/customer/products');
   };
 
   return (
     <div className="form-container">
-      <img src={ logo } alt="trybeer" width={ 200 } />
-      <h1>Cadastro</h1>
-
+      <video playsInline autoPlay muted loop id="myVideo">
+        <source src="https://player.vimeo.com/external/543175330.sd.mp4?s=daf8fd4627cc89a064e251d02f0952773b119858&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+      </video>
       <form action="" method="post" onSubmit={ handleSubmit } className="form-main">
+        <img src={ logo } alt="trybeer" width={ 200 } />
+        <h1>Cadastro</h1>
         <section>
           <label htmlFor="userName">
             <p>Nome</p>

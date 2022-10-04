@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
+import '../styles/components/admUsersList.css';
 
 function AdmListUsers() {
   const [users, setUsers] = React.useState([]);
@@ -25,8 +26,8 @@ function AdmListUsers() {
 
   return (
     <div>
-      <h1>Lista de usuários</h1>
-      <div>
+      <div className="userlist-container">
+        <h1>Lista de usuários</h1>
         <table>
           <thead>
             <th>Item</th>
@@ -39,6 +40,7 @@ function AdmListUsers() {
             {!users.length ? <p>Loading</p> : users.map((user, index) => (
               <tr key={ user.id }>
                 <td
+                  id="userlist-item"
                   data-testid={
                     `admin_manage__element-user-table-item-number-${user.id}`
                   }
@@ -46,6 +48,7 @@ function AdmListUsers() {
                   {index + 1}
                 </td>
                 <td
+                  id="userlist-name"
                   data-testid={
                     `admin_manage__element-user-table-name-${user.id}`
                   }
@@ -53,6 +56,7 @@ function AdmListUsers() {
                   {user.name}
                 </td>
                 <td
+                  id="userlist-email"
                   data-testid={
                     `admin_manage__element-user-table-email-${user.id}`
                   }
@@ -72,6 +76,7 @@ function AdmListUsers() {
                   data-testid={
                     `admin_manage__element-user-table-remove-${user.id}`
                   }
+                  id="userlist-delete"
                 >
                   <button
                     type="button"

@@ -1,48 +1,46 @@
 .form-container {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  margin-left: 40px;
+  margin-top: 50px;
 }
 
 .form-main {
   align-items: center;
-  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   max-width: 500px;
+  opacity: 0.9;
   padding: 20px;
   width: 100%;
-  background-color: #fff;
-  border-radius: 5px;
 }
 
 .input-register {
-  width: 100%;
-  padding: 12px 20px;
-  display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  display: inline-block;
+  padding: 12px 20px;
+  width: 100%;
 }
 
 .input {
-  width: 45%;
-  padding: 12px 20px;
-  display: inline-block;
   border: 1px solid #ccc;
-  margin-top: 15px;
   border-radius: 4px;
   box-sizing: border-box;
+  display: inline-block;
   font-size: 18px;
+  margin-top: 15px;
+  padding: 12px 20px;
+  width: 45%;
 }
 
 .register-button {
   color: black;
 }
 
-.email-button {
-  background-color: red;
-}
 
 .login-button {
   background-color: black;
@@ -51,7 +49,6 @@
 
 .login-button:disabled {
   background-color: black;
-  color: yellow;
 }
 
 #myVideo {
@@ -59,7 +56,7 @@
   height: 100vh;
   left: 0;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.9;
   position: fixed;
   right: 0;
   top: 0;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLoginContext } from '../context/LoginContext';
 import api from '../services';
+import '../styles/pages/orderDetails.css';
 
 const { serializeDate, serializePrice } = require('../utils');
 
@@ -9,6 +10,7 @@ function OrdersDetails() {
   const { userOrders, setUserOrders } = useLoginContext();
   const [sellers, setSellers] = useState({});
   const [disable, setDisable] = useState(true);
+  const [classStatus, setClassStatus] = useState('Pendente');
   const { id } = useParams();
   const testIdsTable = 'customer_order_details__element-order-table';
   const testIdStatus = 'customer_order_details__element-order';
@@ -28,6 +30,7 @@ function OrdersDetails() {
     api.get(`/orders/${id}`)
       .then((response) => {
         const { data } = response;
+        setClassStatus(data[0].status === 'Em Trânsito' ? 'em-transito' : data[0].status);
         disableButton(data[0].status);
         getSellersById(data[0].sellerId);
         setUserOrders(data);
@@ -46,11 +49,11 @@ function OrdersDetails() {
   };
 
   return (
-    <section>
-      <h2>Detalhe do pedido</h2>
-      <div>
+    <section className="section-details">
+      <h2>Detalhes do pedido</h2>
+      <div className="infos-container">
         <h4 data-testid="customer_order_details__element-order-details-label-order-id">
-          {`Pedido ${id};`}
+          {`Pedido ${id}`}
         </h4>
         <h4
           data-testid="customer_order_details__element-order-details-label-seller-name"
@@ -67,11 +70,13 @@ function OrdersDetails() {
             : serializeDate(userOrders[0].saleDate)}
         </h4>
         <h4
+          className={ classStatus }
           data-testid={ `${testIdStatus}-details-label-delivery-status` }
         >
           { userOrders.length === 0 ? '' : userOrders[0].status}
         </h4>
         <button
+          className="delivery-button"
           type="button"
           disabled={ disable }
           data-testid="customer_order_details__button-delivery-check"
@@ -80,7 +85,7 @@ function OrdersDetails() {
           Marcar como entregue
         </button>
       </div>
-      <table>
+      <table className="table-orders">
         <thead>
           <tr>
             <th>Item</th>
@@ -129,11 +134,12 @@ function OrdersDetails() {
         </tbody>
       </table>
       <div
+        className="total-price-order"
         data-testid="customer_order_details__element-order-total-price"
       >
         { userOrders.length === 0
           ? ''
-          : `${serializePrice(userOrders[0].totalPrice)}` }
+          : <p>{ `Total: R$ ${serializePrice(userOrders[0].totalPrice)}` }</p> }
       </div>
     </section>
   );

@@ -53,7 +53,7 @@ function Register() {
       setError(result.data.message);
       return;
     }
-    const userData = { name, email, role: 'customer', token: result.token };
+    const userData = { name, email, role: 'customer', token: result.token, id: result.id };
     setLocalStorage('user', userData);
     history.push('/customer/products');
   };

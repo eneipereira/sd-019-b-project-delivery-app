@@ -1,25 +1,41 @@
 .header-container {
   align-items: center;
   background-color: rgb(85, 80, 80);
-  color: white;
   display: flex;
   flex-direction: row;
-  height: 100%;
-  justify-content: space-between;
-  padding: 0 20px;
+}
+
+.header-container img {
+  align-items: baseline;
+  display: flex;
+  height: 84px;
+  margin-left: 0%;
+  margin-right: 0%;
 }
 
 .header-container a {
-  border-radius: 5px;
-  padding: 14px;
-  background-color: white;
-  height: 100%;
-  margin: 0 10px;
-  color: rgb(85, 80, 80);
+  background-color: rgb(85, 80, 80);
+  color: rgb(249, 249, 249);
   font-size: 1.5rem;
+  height: 70px;
+  padding: 25px 30px;
   text-decoration: none;
 }
 
-.header-container h1 {
+.header-container a:hover {
+  background-color: rgb(253, 253, 253);
+  color: black;
+  padding: 30px;
+}
+
+.header-name {
+  background-color: yellow;
+  color: black;
   font-size: 1.5rem;
+  margin: 0;
+  padding: 28px;
+}
+
+.header-logout {
+  margin-left: 800px;
 }

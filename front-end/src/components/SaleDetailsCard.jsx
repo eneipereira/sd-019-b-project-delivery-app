@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../services';
+import '../styles/components/saledetailcard.css';
 
 const { serializeDate, serializePrice } = require('../utils');
 
@@ -39,8 +40,10 @@ function SaleDetailsCard() {
     <div>
       {!saleState.length ? <p>Loading...</p>
         : saleState.map((sale) => (
-          <div key={ sale.id }>
+          <div key={ sale.id } className="detailcard-container">
             <h1 data-testid={ `${testId}element-order-details-label-order-id` }>
+              Pedido nº:
+              {' '}
               {sale.id}
             </h1>
             <p data-testid={ `${testId}element-order-details-label-order-date` }>
@@ -68,6 +71,11 @@ function SaleDetailsCard() {
             <div>
               {sale.products.map((item, index) => (
                 <div key={ item.id } className="salecard-card">
+                  <img
+                    src={ item.urlImage }
+                    alt={ item.name }
+                    data-testid={ `${testId}element-order-details-product-img-${index}` }
+                  />
                   <p data-testid={ `${testId}element-order-table-item-number-${index}` }>
                     {index + 1}
                   </p>

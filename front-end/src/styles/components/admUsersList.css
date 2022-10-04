@@ -1,0 +1,80 @@
+.userlist-container {
+  align-items: center;
+  border: 1px solid rgb(185, 184, 184);
+  border-collapse: collapse;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial , Helvetica , sans-serif;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.userlist-container table {
+  margin-bottom: 40px;
+  overflow-x: auto;
+  width: 90%;
+}
+
+.userlist-container td, th {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.userlist-container tr:hover {
+  background-color: rgb(85, 80, 80);
+  color: rgb(249, 249, 249);
+}
+
+.userlist-container td {
+  width: 100px;
+}
+
+.userlist-container th {
+  background-color: yellow;
+  color: black;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+.userlist-container td button {
+  background-color: rgb(207, 207, 201);
+  border: 1px solid rgb(185, 184, 184);
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  font-size: 1rem;
+  height: 30px;
+  justify-content: center;
+  padding: 5px;
+  width: 90px;
+}
+
+.userlist-container td button:hover {
+  background-color: rgb(253, 253, 253);
+  color: black;
+}
+
+/* stylelint-disable-next-line selector-max-specificity */
+#userlist-delete button {
+  margin-left: 20px;
+}
+
+#userlist-item {
+  text-align: center;
+  width: 10px;
+}
+
+#userlist-name {
+  text-align: left;
+  width: 300px;
+}
+
+#userlist-email {
+  text-align: left;
+  width: 250px;
+}

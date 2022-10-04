@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { createUserByAdmPage } from '../services';
 import { getLocalStorageParsed } from '../utils';
+import '../styles/components/admNewUser.css';
 
 const MIN_LENGTH_PASSWORD = 6;
 const MIN_LENGTH_NAME = 12;
@@ -73,10 +74,14 @@ function AdmNewUser() {
 
   return (
     <div>
-      <h1>Cadastrar novo usuário</h1>
-      <div>
-        {/* <form> */}
-        <form action="" method="post" onSubmit={ handleSubmit }>
+      <div className="newuser-container">
+        <h1>Cadastrar novo usuário</h1>
+        <form
+          className="newuser-form"
+          action=""
+          method="post"
+          onSubmit={ handleSubmit }
+        >
           <label htmlFor="name">
             Nome:
             <input

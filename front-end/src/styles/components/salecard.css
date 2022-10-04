@@ -1,21 +1,48 @@
 .salecard-container {
-  border: #2fc18c 3px solid;
-  border-radius: 5px;
   display: flex;
   flex-direction: row;
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 5%;
-  width: 30%;
+  margin-top: 20px;
+  width: 80%;
 }
 
 .salecard-card {
-  border: #2fc18c 3px solid;
+  border: rgb(85, 80, 80) 3px solid;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin-left: 10%;
+  margin-left: 5%;
   margin-right: 10%;
   margin-top: 5%;
-  width: 30%;
+  width: 100%;
+}
+
+.sale-number h1 {
+  color: rgb(25, 26, 25);
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.sale-status h1 {
+  background-color: yellow;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.order-details p {
+  color: rgb(85, 80, 80);
+}
+
+.salecard-container img {
+  align-self: center;
+  border-radius: 5px;
+  display: flex;
+  height: 100px;
+  width: 100px;
 }

@@ -5,7 +5,7 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "scripts": {
+ "scripts": {
     "pm2": "./node_modules/.bin/pm2",
     "jest": "./node_modules/.bin/jest",
     "start": "./scripts/prepare-for-test.sh",
@@ -18,7 +18,9 @@
     "test": "jest -i --forceExit --verbose --config=./jest.config.js",
     "test:dev": "NODE_ENV=development npm run jest -i --forceExit --config=./jest.config.js",
     "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
-    "test:dev:report": "./__tests__/reports/generate.sh"
+    "test:dev:report": "./__tests__/reports/generate.sh",
+    "build:noinstall": "cd ./back-end/public && rm -rf build/ && cd ../../front-end && npm run build && cp -R ./build .././back-end/public && cd .././back-end",
+    "build:full": "cd ./back-end/public && rm -rf build/ && cd ../../front-end && npm install && npm run build && cp -R ./build .././back-end/public && cd .././back-end && npm install"
   },
   "repository": {
     "type": "git",
